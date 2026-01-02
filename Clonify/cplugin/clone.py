@@ -1,31 +1,46 @@
-import time
+import asyncio
 import random
-from datetime import datetime
+from pyrogram import Client
 
-import psutil
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+# Replace these with your session strings for each bot
+SESSION_STRINGS = [
+    "PASTE_STRING1",
+    "PASTE_STRING2",
+    "PASTE_STRING3",
+]
 
-from Clonify import app
-from config import PING_IMG_URL, STREAMI_PICS
-from .utils import StartTime
-from Clonify.utils import get_readable_time
-from Clonify.utils.decorators.language import language
+async def start_bot(session_str: str):
+    """
+    Start a single Pyrogram bot safely with a unique session name
+    """
+    # unique session name prevents SQLite locks
+    session_name = f"bot_{random.randint(1000,9999)}"
+    bot = Client(session_name=session_name, session_string=session_str)
 
-APP_LINK = f"https://t.me/dark_powerfull_bot"
+    try:
+        await bot.start()
+        me = await bot.get_me()
+        print(f"✅ Bot @{me.username} started with session {session_name}")
+    except Exception as e:
+        print(f"❌ Failed to start bot with session {session_name}: {e}")
+        return None
 
+    return bot
 
-@Client.on_message(filters.command("clone"))
-@language
-async def ping_clone(client: Client, message: Message, _):
-    bot = await client.get_me()
+async def main():
+    bots = []
+    for s in SESSION_STRINGS:
+        bot = await start_bot(s)
+        if bot:
+            bots.append(bot)
+        # small delay to avoid SQLite lock
+        await asyncio.sleep(0.5)
 
+    print(f"Total bots running: {len(bots)}")
 
-    hmm = await message.reply_photo(
-        photo=random.choice(STREAMI_PICS), caption=_["NO_CLONE_MSG"],
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("Cʟᴏɴᴇ Bᴏᴛ", url=APP_LINK)]
-            ]
-        )
-    )
+    # Keep bots running
+    while True:
+        await asyncio.sleep(60)
+
+if __name__ == "__main__":
+    asyncio.run(main())
