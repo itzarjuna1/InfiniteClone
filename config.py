@@ -9,25 +9,25 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID", ""))
-API_HASH = getenv("API_HASH", "")
+API_ID = int(getenv("API_ID", "33638160"))
+API_HASH = getenv("API_HASH", "3a0caeb09828e19cb8c17e18d4911bfa")
 # ------------------------------------------------------
 BOT_TOKEN = getenv("BOT_TOKEN", "")
-BOT_ID = getenv("BOT_ID", "")
+BOT_ID = getenv("BOT_ID", "8357362231")
 # -------------------------------------------------------
 OWNER_USERNAME = getenv("OWNER_USERNAME","owner_pf_itachi")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "infinity_powerfull_bot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "dark_powerfull_bot")
 # --------------------------------------------------------
-BOT_NAME = getenv("BOT_NAME" , "")
+BOT_NAME = getenv("BOT_NAME" , "˹𝐃ᴧ፝֟ʀᴋ ꭙ 𝚱ηɪ፝֟ɢʜᴛ˼ [ ϻυʂɪᴄ~♪ ]")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "HINDU_MUSIC_ASSIST")
+ASSUSERNAME = getenv("ASSUSERNAME" , "dark_assist_1")
 # ---------------------------------------------------------
 
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://knight4563:knight4563@cluster0.a5br0se.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 API_KEY = getenv("API_KEY")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
@@ -37,11 +37,11 @@ DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID"))
+LOGGER_ID = int(getenv("LOGGER_ID", "-1003228624224"))
 CLONE_LOGGER = LOGGER_ID
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-OWNER_ID = int(getenv("OWNER_ID", 7553434931))
+OWNER_ID = int(getenv("OWNER_ID", 7651303468))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # config.py
@@ -143,32 +143,32 @@ confirmer = {}
 # ------------------------------------------------------------------------
 
 STREAMI_PICS = [
-"https://files.catbox.moe/t4958d.mp4",
-"https://files.catbox.moe/ok8tat.mp4",
+"https://files.catbox.moe/qpmy2w.mp4",
+"https://files.catbox.moe/qpmy2w.mp4",
 
 ]
 
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://files.catbox.moe/ndz1uy.mp4"
+    "START_IMG_URL", "https://files.catbox.moe/qpmy2w.mp4"
 )
 
 HELP_IMG_URL = getenv(
-    "HELP_IMG_URL", "https://files.catbox.moe/ok8tat.mp4"
+    "HELP_IMG_URL", "https://files.catbox.moe/06ciea.mp4"
 )
 
 PING_IMG_URL = getenv(
     "PING_IMG_URL", "https://files.catbox.moe/tjxy2c.jpg"
 )
-PLAYLIST_IMG_URL = "https://i.ibb.co/gL3ykkyh/play-music.jpg"
-STATS_IMG_URL = "https://files.catbox.moe/v5yg3x.jpg"
-TELEGRAM_AUDIO_URL = "https://i.ibb.co/gL3ykkyh/play-music.jpg"
-TELEGRAM_VIDEO_URL = "https://i.ibb.co/gL3ykkyh/play-music.jpg"
-STREAM_IMG_URL = "https://i.ibb.co/0VKCS20y/stream.jpg"
-SOUNCLOUD_IMG_URL = "https://i.ibb.co/S4sPf3q8/soundcloud.jpg"
-YOUTUBE_IMG_URL = "https://i.ibb.co/xShkBVBK/youtube.jpg"
-SPOTIFY_ARTIST_IMG_URL = "https://i.ibb.co/XZfMS8Db/spotify.jpg"
-SPOTIFY_ALBUM_IMG_URL = "https://i.ibb.co/XZfMS8Db/spotify.jpg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://i.ibb.co/XZfMS8Db/spotify.jpg"
+PLAYLIST_IMG_URL = "https://files.catbox.moe/pdd3th.jpeg"
+STATS_IMG_URL = "https://files.catbox.moe/jpovwg.jpeg"
+TELEGRAM_AUDIO_URL = "https://files.catbox.moe/pdd3th.jpeg"
+TELEGRAM_VIDEO_URL = "https://files.catbox.moe/1p0r3g.jpeg"
+STREAM_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
+SOUNCLOUD_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
+YOUTUBE_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
+SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
+SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
 
 # ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
