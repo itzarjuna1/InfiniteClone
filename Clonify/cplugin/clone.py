@@ -1,8 +1,7 @@
 import asyncio
-import random
 from pyrogram import Client
 
-# Replace these with your session strings for each bot
+# Your string sessions (bot OR user)
 SESSION_STRINGS = [
     "PASTE_STRING1",
     "PASTE_STRING2",
@@ -11,34 +10,36 @@ SESSION_STRINGS = [
 
 async def start_bot(session_str: str):
     """
-    Start a single Pyrogram bot safely with a unique session name
+    Start a Pyrogram client using STRING SESSION ONLY (no SQLite)
     """
-    # unique session name prevents SQLite locks
-    session_name = f"bot_{random.randint(1000,9999)}"
-    bot = Client(session_name=session_name, session_string=session_str)
+    bot = Client(
+        name=None,                 # 🔴 IMPORTANT
+        session_string=session_str,
+        api_id=API_ID,
+        api_hash=API_HASH
+    )
 
     try:
         await bot.start()
         me = await bot.get_me()
-        print(f"✅ Bot @{me.username} started with session {session_name}")
+        print(f"✅ Bot @{me.username} started")
+        return bot
     except Exception as e:
-        print(f"❌ Failed to start bot with session {session_name}: {e}")
+        print(f"❌ Failed to start bot: {e}")
         return None
-
-    return bot
 
 async def main():
     bots = []
+
     for s in SESSION_STRINGS:
         bot = await start_bot(s)
         if bot:
             bots.append(bot)
-        # small delay to avoid SQLite lock
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(1)  # small delay (safe)
 
-    print(f"Total bots running: {len(bots)}")
+    print(f"🚀 Total bots running: {len(bots)}")
 
-    # Keep bots running
+    # Keep process alive
     while True:
         await asyncio.sleep(60)
 
