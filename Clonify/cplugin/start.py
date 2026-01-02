@@ -162,9 +162,9 @@ async def start_gp(client, message: Message, _):
     a = await client.get_me()
     #Cloned Bot Support Chat and channel
     C_BOT_SUPPORT_CHAT = await get_cloned_support_chat(a.id)
-    C_SUPPORT_CHAT = f"https://t.me/drx_supportchat"
+    C_SUPPORT_CHAT = f"https://t.me/snowy_hometown"
     C_BOT_SUPPORT_CHANNEL = await get_cloned_support_channel(a.id)
-    C_SUPPORT_CHANNEL = f"https://t.me/lll_drx_network"
+    C_SUPPORT_CHANNEL = f"https://t.me/dark_musictm"
     # out = start_panel(_)
     out = [
                     [
