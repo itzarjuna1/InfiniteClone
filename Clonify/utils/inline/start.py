@@ -30,11 +30,8 @@ def private_panel(_):
         ],
         [
             InlineKeyboardButton(text=_["S_B_6"], url=config.SUPPORT_CHANNEL),
-            InlineKeyboardButton(text=_["S_B_2"], url=config.SUPPORT_CHAT)
-        ],
-        [
-            InlineKeyboardButton(text=[𝗖𝗢-𝗗𝗘𝗩], url=f"https://t.me/owner_of_itachi")
-        ],
+                InlineKeyboardButton(text=_["S_B_2"], url=config.SUPPORT_CHAT)
+        ],  
         [InlineKeyboardButton(text=_["S_B_4"], callback_data="settings_back_helper")],
     ]
     return buttons
