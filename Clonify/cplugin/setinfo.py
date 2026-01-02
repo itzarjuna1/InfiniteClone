@@ -129,8 +129,8 @@ async def bot_info(client: Client, message: Message, _):
     await message.reply_text(
         f"**Bᴏᴛ Iɴғᴏ:**\n"
         f"➤ **Bᴏᴛ ID:** `{bot_id}`\n"
-        f"➤ **Cʜᴀɴɴᴇʟ:** @DRxGiveway\n"
-        f"➤ **Sᴜᴘᴘᴏʀᴛ Cʜᴀᴛ:** @DRx_SupportChat\n"
+        f"➤ **Cʜᴀɴɴᴇʟ:** @dark_musictm\n"
+        f"➤ **Sᴜᴘᴘᴏʀᴛ Cʜᴀᴛ:** @snowy_hometown\n"
         f"➤ **Bᴏᴛ Sᴛᴀᴛᴜs:** {bot_status}"
     )
 
