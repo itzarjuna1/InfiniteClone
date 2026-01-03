@@ -6,15 +6,8 @@ from typing import Union
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 
-# Compatible imports - works with py-tgcalls 2.2.8, 3.x, ntgcalls
 from pytgcalls import PyTgCalls
 from pytgcalls.types import Update
-try:
-    from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-    from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
-except ImportError:
-    # Fallback for versions where classes are directly in types
-    from pytgcalls.types import AudioPiped, AudioVideoPiped, HighQualityAudio, MediumQualityVideo
 
 from pytgcalls.exceptions import (
     AlreadyInVoiceChat,
