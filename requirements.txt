@@ -1,4 +1,4 @@
-# ================= CORE ASYNC =================
+# ================= CORE =================
 aiofiles
 aiohttp
 apscheduler
@@ -19,7 +19,7 @@ search_engine_parser
 SafoneAPI
 git+https://github.com/AsmSafone/SafoneAPI
 
-# ================= MEDIA / AUDIO =================
+# ================= MEDIA =================
 ffmpeg-python
 pydub
 gtts
@@ -30,7 +30,7 @@ youtube-search
 youtube-search-python
 pytube
 
-# ================= IMAGE / FILE =================
+# ================= IMAGE =================
 pillow==9.5.0
 opencv-python
 img2pdf
@@ -38,12 +38,11 @@ qrcode
 hachoir
 
 # ================= TELEGRAM =================
-# Pyrogram fork (stable with pytgcalls 0.9.7)
 git+https://github.com/KurimuzonAkuma/pyrogram.git
 tgcrypto
 
-# Voice / VC calls (DO NOT UPGRADE)
-pytgcalls==0.9.7
+# ✅ CORRECT VC STACK (STABLE)
+py-tgcalls==0.9.7
 ntgcalls==2.0.6
 
 # ================= DATABASE =================
@@ -73,9 +72,3 @@ telegraph
 unidecode
 wget
 flask
-
-# ================= DISABLED / REMOVED =================
-# python-telegram-bot ❌ (conflicts with pyrogram)
-# py-tgcalls ❌ (wrong package)
-# openai==0.28.0 ❌ (deprecated, breaks newer deps)
-# pornhub-api ❌ (often broken)
