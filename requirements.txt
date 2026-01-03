@@ -17,7 +17,7 @@ httpx==0.28.1
 lexica-api
 search_engine_parser
 SafoneAPI
-git+https://github.com/AsmSafone/SafoneAPI
+git+ssh://github.com/AsmSafone/SafoneAPI
 
 # ================= MEDIA =================
 ffmpeg-python
@@ -38,11 +38,11 @@ qrcode
 hachoir
 
 # ================= TELEGRAM =================
-git+https://github.com/KurimuzonAkuma/pyrogram.git
+git+ssh://github.com/KurimuzonAkuma/pyrogram.git
 tgcrypto
 
 # ✅ CORRECT VC STACK (STABLE)
-git+https://github.com/laky-64/pytgcalls.git@0.9.7
+git+ssh://github.com/laky-64/pytgcalls.git@0.9.7
 ntgcalls==2.0.6
 
 # ================= DATABASE =================
