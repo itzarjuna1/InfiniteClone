@@ -7,6 +7,7 @@ from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls
 from ntgcalls import StreamType
+try:
 from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall, NotInGroupCall
 except ImportError:
     # fallback for new versions
