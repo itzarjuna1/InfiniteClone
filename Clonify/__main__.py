@@ -3,7 +3,9 @@ import asyncio
 import importlib
 
 from pyrogram import idle
-from pytgcalls.exceptions import NoActiveGroupCall
+
+# ✅ NEW (3.x compatible)
+from pytgcalls.exceptions import GroupCallNotFound
 
 import config
 from Clonify import LOGGER, app, userbot
