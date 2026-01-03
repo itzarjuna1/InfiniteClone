@@ -9,12 +9,6 @@ from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls
 from pytgcalls.types import Update
 
-from pytgcalls.exceptions import (
-    AlreadyInVoiceChat,
-    GroupCallNotFound,
-    NotInVoiceChat,
-    RPCError,
-)
 from Clonify.utils.exceptions import AssistantErr
 from Clonify.utils.formatters import check_duration, seconds_to_min, speed_converter
 from Clonify.utils.inline.play import stream_markup
