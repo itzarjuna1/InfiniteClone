@@ -2,7 +2,7 @@
 aiofiles
 aiohttp
 apscheduler
-asyncio
+# asyncio is built-in in Python ≥3.10, no need to pip install
 
 # ================= SCRAPING / APIS =================
 bard
@@ -41,9 +41,8 @@ hachoir
 git+ssh://git@github.com/KurimuzonAkuma/pyrogram.git
 tgcrypto
 
-# ✅ CORRECT VC STACK (STABLE)
-py-tgcalls==2.0.6
-#ntgcalls==2.0.6
+# ================= VOICE CHAT =================
+py-tgcalls==2.2.7  # updated for StreamType support
 
 # ================= DATABASE =================
 motor
@@ -61,6 +60,7 @@ pycountry
 pycryptodome
 pyfiglet
 pykeyboard
+pyrofork
 python-dotenv
 python-whois
 pyshorteners
