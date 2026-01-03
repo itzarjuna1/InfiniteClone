@@ -6,10 +6,15 @@ from typing import Union
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 
+# Compatible imports - works with py-tgcalls 2.2.8, 3.x, ntgcalls
 from pytgcalls import PyTgCalls
 from pytgcalls.types import Update
-from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
+try:
+    from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
+    from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
+except ImportError:
+    # Fallback for versions where classes are directly in types
+    from pytgcalls.types import AudioPiped, AudioVideoPiped, HighQualityAudio, MediumQualityVideo
 
 from pytgcalls.exceptions import (
     AlreadyInVoiceChat,
@@ -95,10 +100,7 @@ class Call:
         )
 
         try:
-            await assistant.join_group_call(
-                chat_id,
-                stream,
-            )
+            await assistant.join_group_call(chat_id, stream)
         except Exception:
             raise AssistantErr(_["call_8"])
 
@@ -150,7 +152,7 @@ class Call:
         await client.change_stream(chat_id, stream)
 
     async def start(self):
-        LOGGER(__name__).info("Starting PyTgCalls 2.2.6 Client...")
+        LOGGER(__name__).info("Starting PyTgCalls Client...")
         await self.userbot1.start()
         await self.one.start()
 
