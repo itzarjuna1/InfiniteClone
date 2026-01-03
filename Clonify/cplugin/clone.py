@@ -4,7 +4,6 @@ from datetime import datetime
 
 import psutil
 from pyrogram import Client, filter
-from Clonify.utils.player import play_music
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from Clonify import app
