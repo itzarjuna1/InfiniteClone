@@ -9,8 +9,8 @@ from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls
 from pytgcalls.types import Update
 from pytgcalls.types.stream import StreamEnded
-from pytgcalls.types.input_streams import AudioPiped, AudioVideoPiped
-from pytgcalls.types.input_streams.quality import HighQualityAudio, MediumQualityVideo
+from pytgcalls.types.streams import AudioPiped, AudioVideoPiped
+from pytgcalls.types.streams.quality import HighQualityAudio, MediumQualityVideo
 from ntgcalls import StreamType
 
 from pytgcalls.exceptions import (
