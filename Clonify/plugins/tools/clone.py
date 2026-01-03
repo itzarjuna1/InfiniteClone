@@ -1,10 +1,10 @@
 import asyncio
 import logging
+import uuid
 import requests
 from datetime import datetime
 
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import AccessTokenExpired, AccessTokenInvalid
 
 from Clonify import app
@@ -15,7 +15,6 @@ from Clonify.utils.database.clonedb import (
     has_user_cloned_any_bot,
     get_owner_id_from_db,
 )
-from Clonify.utils.database import get_assistant
 
 from config import (
     API_ID,
@@ -25,9 +24,11 @@ from config import (
     CLONE_LOGGER,
 )
 
-# ===================== CONSTANTS ===================== #
+log = logging.getLogger(__name__)
 
 CLONES = set()
+
+# ===================== CONSTANTS ===================== #
 
 C_BOT_DESC = (
     "Wᴀɴᴛ ᴀ ʙᴏᴛ ʟɪᴋᴇ ᴛʜɪs? Cʟᴏɴᴇ ɪᴛ ɴᴏᴡ! ✅\n\n"
@@ -47,35 +48,41 @@ C_BOT_COMMANDS = [
     {"command": "id", "description": "Get ID"},
 ]
 
+# ===================== SAFE CLIENT ===================== #
+
+def build_clone_client(bot_id: int, bot_token: str) -> Client:
+    return Client(
+        name=f"clone_{bot_id}_{uuid.uuid4().hex[:6]}",  # ✅ NEVER None
+        api_id=int(API_ID),
+        api_hash=str(API_HASH),
+        bot_token=str(bot_token),
+        plugins=dict(root="Clonify.cplugin"),
+        in_memory=True,  # ✅ no sqlite file
+    )
+
 # ===================== CLONE COMMAND ===================== #
 
 @app.on_message(filters.command("clone"))
 @language
-async def clone_bot(client, message, _):
+async def clone_bot(_, message, _t):
     user_id = message.from_user.id
 
     if await has_user_cloned_any_bot(user_id) and user_id != OWNER_ID:
-        return await message.reply_text(_["C_B_H_0"])
+        return await message.reply_text(_t["C_B_H_0"])
 
     if len(message.command) < 2:
-        return await message.reply_text(_["C_B_H_1"])
+        return await message.reply_text(_t["C_B_H_1"])
 
     bot_token = message.command[1].strip()
-    msg = await message.reply_text(_["C_B_H_2"])
+    msg = await message.reply_text(_t["C_B_H_2"])
 
     try:
-        ai = Client(
-            name=None,                  # 🔥 NO SQLITE
-            api_id=API_ID,
-            api_hash=API_HASH,
-            bot_token=bot_token,
-            plugins=dict(root="Clonify.cplugin"),
-        )
-        await ai.start()
-        bot = await ai.get_me()
+        temp = build_clone_client(0, bot_token)
+        await temp.start()
+        bot = await temp.get_me()
 
     except (AccessTokenExpired, AccessTokenInvalid):
-        return await msg.edit_text(_["C_B_H_3"])
+        return await msg.edit_text(_t["C_B_H_3"])
     except Exception as e:
         return await msg.edit_text(f"❌ Error: `{e}`")
 
@@ -93,13 +100,11 @@ async def clone_bot(client, message, _):
 
     CLONES.add(bot.id)
 
-    # Set commands
     requests.post(
         f"https://api.telegram.org/bot{bot_token}/setMyCommands",
         json={"commands": C_BOT_COMMANDS},
     )
 
-    # Set description
     requests.post(
         f"https://api.telegram.org/bot{bot_token}/setMyDescription",
         data={"description": C_BOT_DESC},
@@ -112,16 +117,15 @@ async def clone_bot(client, message, _):
         f"Owner: [{message.from_user.first_name}](tg://user?id={user_id})",
     )
 
-    await msg.edit_text(_["C_B_H_6"].format(bot.username))
-
+    await msg.edit_text(_t["C_B_H_6"].format(bot.username))
 
 # ===================== DELETE CLONE ===================== #
 
 @app.on_message(filters.command(["delclone", "delbot", "rmbot"]))
 @language
-async def delete_clone(client, message, _):
+async def delete_clone(_, message, _t):
     if len(message.command) < 2:
-        return await message.reply_text(_["C_B_H_8"])
+        return await message.reply_text(_t["C_B_H_8"])
 
     query = message.command[1].lstrip("@")
     bot = clonebotdb.find_one(
@@ -129,52 +133,44 @@ async def delete_clone(client, message, _):
     )
 
     if not bot:
-        return await message.reply_text(_["C_B_H_11"])
+        return await message.reply_text(_t["C_B_H_11"])
 
     owner = get_owner_id_from_db(bot["bot_id"])
     if message.from_user.id not in [OWNER_ID, owner]:
-        return await message.reply_text(_["NOT_C_OWNER"].format(SUPPORT_CHAT))
+        return await message.reply_text(_t["NOT_C_OWNER"].format(SUPPORT_CHAT))
 
     clonebotdb.delete_one({"_id": bot["_id"]})
     CLONES.discard(bot["bot_id"])
 
-    await message.reply_text(_["C_B_H_10"])
+    await message.reply_text(_t["C_B_H_10"])
 
-
-# ===================== RESTART CLONES (SAFE) ===================== #
+# ===================== SAFE RESTART ===================== #
 
 async def restart_bots():
-    logging.info("Starting cloned bots safely...")
+    log.info("Starting cloned bots safely...")
 
     for bot in clonebotdb.find():
         try:
-            ai = Client(
-                name=None,              # 🔥 NO SQLITE
-                api_id=API_ID,
-                api_hash=API_HASH,
-                bot_token=bot["token"],
-                plugins=dict(root="Clonify.cplugin"),
-            )
-            await ai.start()
-            me = await ai.get_me()
+            client = build_clone_client(bot["bot_id"], bot["token"])
+            await client.start()
+            me = await client.get_me()
             CLONES.add(me.id)
-            await asyncio.sleep(2)
+            await asyncio.sleep(1)
 
         except Exception as e:
-            logging.error(f"Skipped clone restart: {e}")
+            log.error(f"Skipped clone restart: {e}")
 
     await app.send_message(CLONE_LOGGER, "✅ All cloned bots started safely.")
-
 
 # ===================== LIST USER CLONES ===================== #
 
 @app.on_message(filters.command(["mybots", "mybot"]))
 @language
-async def my_bots(client, message, _):
+async def my_bots(_, message, _t):
     bots = list(clonebotdb.find({"user_id": message.from_user.id}))
 
     if not bots:
-        return await message.reply_text(_["C_B_H_16"])
+        return await message.reply_text(_t["C_B_H_16"])
 
     text = f"**Your Cloned Bots ({len(bots)}):**\n\n"
     for b in bots:
@@ -182,12 +178,11 @@ async def my_bots(client, message, _):
 
     await message.reply_text(text)
 
-
 # ===================== ADMIN LIST ===================== #
 
 @app.on_message(filters.command("cloned") & SUDOERS)
 @language
-async def list_all_clones(client, message, _):
+async def list_all_clones(_, message, _t):
     bots = list(clonebotdb.find())
 
     text = f"**Total Clones:** `{len(bots)}`\n\n"
