@@ -2,22 +2,42 @@
 aiofiles
 aiohttp
 apscheduler
-# asyncio is built-in in Python ≥3.10, no need to pip install
+asyncio
+future==1.0.0
+gitpython
+python-dotenv
+psutil
+numpy<2.0.0
+pytz
+pyfiglet
+pykeyboard
+pyyaml==6.0.1
+requests
+unidecode
+wget
+flask
 
 # ================= SCRAPING / APIS =================
 bard
-bing_image_downloader
+bing-image-downloader
 beautifulsoup4
 bs4
 cloudscraper
 deepai
+daxxhub
 dnspython
+emojis
 gpytranslate
-httpx==0.28.1
+httpx==0.27.0
 lexica-api
-search_engine_parser
+search-engine-parser
 SafoneAPI
-git+ssh://git@github.com/AsmSafone/SafoneAPI
+git+https://github.com/AsmSafone/SafoneAPI
+MukeshAPI
+instaloader
+heroku3
+spotipy
+telegraph
 
 # ================= MEDIA =================
 ffmpeg-python
@@ -29,46 +49,24 @@ yt-dlp
 youtube-search
 youtube-search-python
 pytube
+py-tgcalls==2.2.6
 
 # ================= IMAGE =================
-pillow==9.5.0
+pillow==10.4.0
 opencv-python
 img2pdf
 qrcode
 hachoir
 
 # ================= TELEGRAM =================
-git+ssh://git@github.com/KurimuzonAkuma/pyrogram.git
+pyrogram==2.0.106
 tgcrypto
-
-# ================= VOICE CHAT =================
-py-tgcalls==2.2.7  # updated for StreamType support
+python-telegram-bot==21.1.1
 
 # ================= DATABASE =================
 motor
 pickledb
 pymongo
 
-# ================= UTILITIES =================
-Faker
-future==1.0.0
-gitpython
-heroku3
-numpy<2.0.0
-psutil
-pycountry
-pycryptodome
-pyfiglet
-pykeyboard
-pyrofork
-python-dotenv
-python-whois
-pyshorteners
-pytz
-requests
-speedtest-cli
-spotipy
-telegraph
-unidecode
-wget
-flask
+# ================= NSFW / OPTIONAL =================
+pornhub-api==0.4.0   # ⚠️ NSFW, optional
