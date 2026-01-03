@@ -7,29 +7,17 @@ from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 
 from pytgcalls import PyTgCalls
-from ntgcalls import StreamType
 from pytgcalls.types import Update
 from pytgcalls.types.stream import StreamEnded
-from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall, NotInGroupCall, TelegramServerError
-
-# NEW: input streams moved here in 2.2.6
 from pytgcalls.types.input_streams import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_streams.quality import HighQualityAudio, MediumQualityVideo
+from ntgcalls import StreamType
 
-import config
-from Clonify import LOGGER, YouTube, app
-from Clonify.misc import db
-from Clonify.utils.database import (
-    add_active_chat,
-    add_active_video_chat,
-    get_lang,
-    get_loop,
-    group_assistant,
-    is_autoend,
-    music_on,
-    remove_active_chat,
-    remove_active_video_chat,
-    set_loop,
+from pytgcalls.exceptions import (
+    AlreadyInVoiceChat,
+    GroupCallNotFound,
+    NotInVoiceChat,
+    RPCError,
 )
 from Clonify.utils.exceptions import AssistantErr
 from Clonify.utils.formatters import check_duration, seconds_to_min, speed_converter
