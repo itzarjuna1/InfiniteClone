@@ -15,7 +15,7 @@ from Clonify.utils.database.clonedb import (
     has_user_cloned_any_bot,
     get_owner_id_from_db,
 )
-from Clonify.utils.music.player import play_music
+from Clonify.utils.player import play_music
 
 from config import (
     API_ID,
