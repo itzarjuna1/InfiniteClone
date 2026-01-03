@@ -6,12 +6,10 @@ from typing import Union
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 
-from pytgcalls import PyTgCalls, StreamType
+from pytgcalls import PyTgCalls
 from pytgcalls.types import Update
-from pytgcalls.types.stream import StreamEnded
-from pytgcalls.types.stream import StreamEnded
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-from pytgcalls.types.stream.quality import HighQualityAudio, MediumQualityVideo
+from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
 
 from pytgcalls.exceptions import (
     AlreadyInVoiceChat,
@@ -100,7 +98,6 @@ class Call:
             await assistant.join_group_call(
                 chat_id,
                 stream,
-                stream_type=StreamType.PULSE_STREAM,
             )
         except Exception:
             raise AssistantErr(_["call_8"])
