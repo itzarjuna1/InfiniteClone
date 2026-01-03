@@ -12,7 +12,6 @@ from pytgcalls.types.stream import StreamEnded
 from pytgcalls.types.stream import StreamEnded
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.stream.quality import HighQualityAudio, MediumQualityVideo
-from ntgcalls import StreamType
 
 from pytgcalls.exceptions import (
     AlreadyInVoiceChat,
