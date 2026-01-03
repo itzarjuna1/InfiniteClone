@@ -7,7 +7,7 @@ from datetime import datetime
 from pyrogram import Client, filters
 from pyrogram.errors import AccessTokenExpired, AccessTokenInvalid
 
-from Clonify import app
+from Clonify import app, userbot
 from Clonify.misc import SUDOERS
 from Clonify.utils.decorators.language import language
 from Clonify.utils.database.clonedb import (
@@ -15,52 +15,52 @@ from Clonify.utils.database.clonedb import (
     has_user_cloned_any_bot,
     get_owner_id_from_db,
 )
+from Clonify.utils.music.player import play_music
 
 from config import (
     API_ID,
     API_HASH,
     OWNER_ID,
+    STRING_SESSION,
     SUPPORT_CHAT,
     CLONE_LOGGER,
 )
 
 log = logging.getLogger(__name__)
-
 CLONES = set()
 
 # ===================== CONSTANTS ===================== #
 
 C_BOT_DESC = (
     "Wᴀɴᴛ ᴀ ʙᴏᴛ ʟɪᴋᴇ ᴛʜɪs? Cʟᴏɴᴇ ɪᴛ ɴᴏᴡ! ✅\n\n"
-    "Vɪsɪᴛ: @HinduMusicRobot\n"
-    "Sᴜᴘᴘᴏʀᴛ: @GOJO_NOBITA_II"
+    "Vɪsɪᴛ: @Destiny_Infinity_Og\n"
+    "Sᴜᴘᴘᴏʀᴛ: @Cuties_logs"
 )
 
 C_BOT_COMMANDS = [
     {"command": "start", "description": "Start the bot"},
     {"command": "help", "description": "Help menu"},
     {"command": "play", "description": "Play music"},
-    {"command": "pause", "description": "Pause stream"},
-    {"command": "resume", "description": "Resume stream"},
+    {"command": "pause", "description": "Pause music"},
+    {"command": "resume", "description": "Resume music"},
     {"command": "skip", "description": "Skip track"},
     {"command": "end", "description": "End stream"},
     {"command": "ping", "description": "Ping bot"},
-    {"command": "id", "description": "Get ID"},
 ]
 
 # ===================== SAFE CLIENT ===================== #
 
 def build_clone_client(bot_id: int, bot_token: str) -> Client:
     return Client(
-        name=f"clone_{bot_id}_{uuid.uuid4().hex[:6]}",  # ✅ NEVER None
+        name=f"clone_{bot_id}_{uuid.uuid4().hex[:6]}",
         api_id=int(API_ID),
         api_hash=str(API_HASH),
         bot_token=str(bot_token),
         plugins=dict(root="Clonify.cplugin"),
-        in_memory=True,  # ✅ no sqlite file
+        in_memory=True,
     )
 
-# ===================== CLONE COMMAND ===================== #
+# ===================== CLONE BOT ===================== #
 
 @app.on_message(filters.command("clone"))
 @language
@@ -73,18 +73,17 @@ async def clone_bot(_, message, _t):
     if len(message.command) < 2:
         return await message.reply_text(_t["C_B_H_1"])
 
-    bot_token = message.command[1].strip()
+    bot_token = message.command[1]
     msg = await message.reply_text(_t["C_B_H_2"])
 
     try:
         temp = build_clone_client(0, bot_token)
         await temp.start()
         bot = await temp.get_me()
-
     except (AccessTokenExpired, AccessTokenInvalid):
         return await msg.edit_text(_t["C_B_H_3"])
     except Exception as e:
-        return await msg.edit_text(f"❌ Error: `{e}`")
+        return await msg.edit_text(f"❌ `{e}`")
 
     clonebotdb.insert_one(
         {
@@ -93,7 +92,6 @@ async def clone_bot(_, message, _t):
             "name": bot.first_name,
             "username": bot.username,
             "token": bot_token,
-            "premium": False,
             "date": datetime.utcnow(),
         }
     )
@@ -112,12 +110,31 @@ async def clone_bot(_, message, _t):
 
     await app.send_message(
         CLONE_LOGGER,
-        f"🤖 **New Clone**\n\n"
+        f"🤖 **New Clone Created**\n\n"
         f"Bot: @{bot.username}\n"
         f"Owner: [{message.from_user.first_name}](tg://user?id={user_id})",
     )
 
     await msg.edit_text(_t["C_B_H_6"].format(bot.username))
+
+# ===================== CLONE PLAY ===================== #
+
+@app.on_message(filters.command("play"))
+async def clone_play(client, message):
+    if len(message.command) < 2:
+        return await message.reply_text("❌ Give a song name")
+
+    query = " ".join(message.command[1:])
+    chat_id = message.chat.id
+
+    await message.reply_text("🎵 Playing via main server...")
+
+    await play_music(
+        userbot=userbot,
+        chat_id=chat_id,
+        query=query,
+        requested_by=message.from_user.id,
+    )
 
 # ===================== DELETE CLONE ===================== #
 
@@ -147,7 +164,7 @@ async def delete_clone(_, message, _t):
 # ===================== SAFE RESTART ===================== #
 
 async def restart_bots():
-    log.info("Starting cloned bots safely...")
+    log.info("Restarting cloned bots...")
 
     for bot in clonebotdb.find():
         try:
@@ -156,13 +173,12 @@ async def restart_bots():
             me = await client.get_me()
             CLONES.add(me.id)
             await asyncio.sleep(1)
-
         except Exception as e:
-            log.error(f"Skipped clone restart: {e}")
+            log.error(f"Clone skipped: {e}")
 
-    await app.send_message(CLONE_LOGGER, "✅ All cloned bots started safely.")
+    await app.send_message(CLONE_LOGGER, "✅ All cloned bots restarted.")
 
-# ===================== LIST USER CLONES ===================== #
+# ===================== USER CLONES ===================== #
 
 @app.on_message(filters.command(["mybots", "mybot"]))
 @language
@@ -178,7 +194,7 @@ async def my_bots(_, message, _t):
 
     await message.reply_text(text)
 
-# ===================== ADMIN LIST ===================== #
+# ===================== ADMIN ===================== #
 
 @app.on_message(filters.command("cloned") & SUDOERS)
 @language
