@@ -2,18 +2,13 @@ aiofiles
 aiohttp
 apscheduler
 asyncio
-bard
-bing_image_downloader 
 beautifulsoup4
-bs4
 cloudscraper
-deepai
 dnspython
 emojis
 ffmpeg-python
 Faker
 future==1.0.0
-git+https://github.com/AsmSafone/SafoneAPI
 gitpython
 gpytranslate
 gtts
@@ -22,34 +17,20 @@ heroku3
 httpx==0.28.1
 img2pdf
 instaloader
-lexica-api
-motor 
+motor
 numpy<2.0.0
-openai==0.28.0
 opencv-python
 pillow==9.5.0
 psutil
 pickledb
-pornhub-api==0.3.0
 pycountry
 pycryptodome
 pydub
 pyfiglet
-pykeyboard
-# pyrogram==2.0.106
-git+https://github.com/KurimuzonAkuma/pyrogram.git
-python-dotenv
-python-telegram-bot==21.1.1
-python-whois
-pyshorteners
-pyttsx3
 pytz
-pytube
-py-tgcalls==0.9.7
 pyyaml==6.0.1
 qrcode
 requests
-SafoneAPI
 search_engine_parser
 speedtest-cli
 SpeechRecognition
@@ -62,3 +43,10 @@ yt-dlp
 youtube-search
 youtube-search-python
 flask
+
+# 🔴 TELEGRAM CORE (LOCKED)
+pyrogram==2.0.106
+
+# 🔴 VOICE CALLS (LOCKED)
+git+https://github.com/Laky-64/pytgcalls.git@0.9.7
+ntgcalls==2.0.6
