@@ -7,14 +7,20 @@ from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 
 from pytgcalls import PyTgCalls
-from pytgcalls.types import Update
-from pytgcalls.types.stream import StreamEnded
-from pytgcalls.types.input_streams import AudioPiped, AudioVideoPiped
-from pytgcalls.types.input_streams.quality import (
+from pytgcalls.types import (
+    Update,
+    AudioPiped,
+    AudioVideoPiped,
     HighQualityAudio,
     MediumQualityVideo,
+    StreamEnded,
 )
-
+from pytgcalls.exceptions import (
+    AlreadyJoinedError,
+    NoActiveGroupCall,
+    NotInGroupCall,
+    TelegramServerError,
+)
 from ntgcalls import StreamType
 
 import config
