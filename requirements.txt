@@ -43,7 +43,7 @@ tgcrypto
 
 # ✅ CORRECT VC STACK (STABLE)
 py-tgcalls==2.0.6
-ntgcalls==2.0.6
+#ntgcalls==2.0.6
 
 # ================= DATABASE =================
 motor
