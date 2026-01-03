@@ -120,8 +120,15 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ------------------------------------
 # ------------------------------------
-STRING1 = getenv("STRING_SESSION", "")
-STRING2 = getenv("STRING_SESSION2", None)
+# ================= STRING SESSION ================= #
+
+STRING_SESSION = getenv("STRING_SESSION", "")
+STRING_SESSION2 = getenv("STRING_SESSION2", None)
+
+# backward compatibility (agar project me kahin STRING1 use ho)
+STRING1 = STRING_SESSION
+STRING2 = STRING_SESSION2
+
 BANNED_USERS = filters.user()
 adminlist = {}
 lyrical = {}
