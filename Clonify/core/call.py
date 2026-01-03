@@ -7,13 +7,13 @@ from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls
 from ntgcalls import StreamType
-from pytgcalls.exceptions import (AlreadyJoinedError, NoActiveGroupCall, NotInGroupCall
+from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall, NotInGroupCall
 except ImportError:
     # fallback for new versions
     AlreadyJoinedError = Exception
     NoActiveGroupCall = Exception
     NotInGroupCall = Exception
-)
+
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
