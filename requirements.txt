@@ -42,7 +42,7 @@ git+https://github.com/KurimuzonAkuma/pyrogram.git
 tgcrypto
 
 # ✅ CORRECT VC STACK (STABLE)
-py-tgcalls==0.9.7
+git+https://github.com/laky-64/pytgcalls.git@0.9.7
 ntgcalls==2.0.6
 
 # ================= DATABASE =================
