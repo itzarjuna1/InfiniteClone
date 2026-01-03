@@ -7,14 +7,10 @@ from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 
 from pytgcalls import PyTgCalls
-from pytgcalls.types import (
-    Update,
-    AudioPiped,
-    AudioVideoPiped,
-    HighQualityAudio,
-    MediumQualityVideo,
-    StreamEnded,
-)
+from pytgcalls.types import Update
+from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
+from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
+from pytgcalls.types.stream import StreamEnded
 from pytgcalls.exceptions import (
     AlreadyJoinedError,
     NoActiveGroupCall,
@@ -42,12 +38,11 @@ from Clonify.utils.exceptions import AssistantErr
 from Clonify.utils.formatters import check_duration, seconds_to_min, speed_converter
 from Clonify.utils.inline.play import stream_markup
 from Clonify.utils.stream.autoclear import auto_clean
-from strings import get_string
 from Clonify.utils.thumbnails import get_thumb
+from strings import get_string
 
 autoend = {}
 counter = {}
-
 
 async def _clear_(chat_id):
     db[chat_id] = []
