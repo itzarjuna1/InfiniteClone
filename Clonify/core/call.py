@@ -7,23 +7,14 @@ from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 
 from pytgcalls import PyTgCalls
-from pytgcalls.exceptions import (
-    AlreadyJoinedError,
-    NoActiveGroupCall,
-    NotInGroupCall,
-)
 from pytgcalls.types import Update
+from pytgcalls.types.stream import StreamEnded
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-from pytgcalls.types.input_stream.quality import (
-    HighQualityAudio,
-    MediumQualityVideo,
-)
-from pytgcalls.types.stream import StreamAudioEnded
-
+from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
 from ntgcalls import StreamType
 
 import config
-from Clonify import LOGGER, app, YouTube
+from Clonify import LOGGER, YouTube, app
 from Clonify.misc import db
 from Clonify.utils.database import (
     add_active_chat,
@@ -38,30 +29,26 @@ from Clonify.utils.database import (
     set_loop,
 )
 from Clonify.utils.exceptions import AssistantErr
-from Clonify.utils.formatters import (
-    check_duration,
-    seconds_to_min,
-    speed_converter,
-)
-from Clonify.utils.inline.play import stream_markup, telegram_markup
+from Clonify.utils.formatters import check_duration, seconds_to_min, speed_converter
+from Clonify.utils.inline.play import stream_markup
 from Clonify.utils.stream.autoclear import auto_clean
-from Clonify.utils.thumbnails import get_thumb
 from strings import get_string
+from Clonify.utils.thumbnails import get_thumb
 
 autoend = {}
 counter = {}
 
 
-async def _clear_(chat_id: int):
+async def _clear_(chat_id):
     db[chat_id] = []
-    await remove_active_chat(chat_id)
     await remove_active_video_chat(chat_id)
+    await remove_active_chat(chat_id)
 
 
 class Call:
     def __init__(self):
         self.userbot1 = Client(
-            "ClonifyAssistant1",
+            name="RAUSHANAss1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
@@ -69,39 +56,41 @@ class Call:
 
         self.one = PyTgCalls(self.userbot1, cache_duration=150)
 
-    # ───────────── BASIC CONTROLS ───────────── #
-
     async def pause_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
-        await assistant.pause_stream(chat_id)
+        await assistant.pause(chat_id)
 
     async def resume_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
-        await assistant.resume_stream(chat_id)
+        await assistant.resume(chat_id)
 
     async def stop_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
         try:
             await _clear_(chat_id)
             await assistant.leave_group_call(chat_id)
-        except (NoActiveGroupCall, NotInGroupCall):
+        except Exception:
             pass
 
-    async def force_stop_stream(self, chat_id: int):
-        try:
-            await self.one.leave_group_call(chat_id)
-        except (NoActiveGroupCall, NotInGroupCall):
-            pass
-        await _clear_(chat_id)
-
-    # ───────────── JOIN CALL ───────────── #
+    async def skip_stream(self, chat_id: int, link: str, video=False):
+        assistant = await group_assistant(self, chat_id)
+        stream = (
+            AudioVideoPiped(
+                link,
+                audio_parameters=HighQualityAudio(),
+                video_parameters=MediumQualityVideo(),
+            )
+            if video
+            else AudioPiped(link, audio_parameters=HighQualityAudio())
+        )
+        await assistant.change_stream(chat_id, stream)
 
     async def join_call(
         self,
         chat_id: int,
         original_chat_id: int,
-        link: str,
-        video: Union[bool, str] = None,
+        link,
+        video: bool = False,
     ):
         assistant = await group_assistant(self, chat_id)
         language = await get_lang(chat_id)
@@ -121,11 +110,9 @@ class Call:
             await assistant.join_group_call(
                 chat_id,
                 stream,
-                stream_type=StreamType().pulse_stream,
+                stream_type=StreamType.PULSE_STREAM,
             )
-        except AlreadyJoinedError:
-            raise AssistantErr(_["call_9"])
-        except NoActiveGroupCall:
+        except Exception:
             raise AssistantErr(_["call_8"])
 
         await add_active_chat(chat_id)
@@ -140,67 +127,52 @@ class Call:
             if users == 1:
                 autoend[chat_id] = datetime.now() + timedelta(minutes=1)
 
-    # ───────────── STREAM CHANGE ───────────── #
-
-    async def change_stream(self, client, chat_id: int):
-        queue = db.get(chat_id)
-        if not queue:
-            return
-
+    async def change_stream(self, client, chat_id):
+        check = db.get(chat_id)
         loop = await get_loop(chat_id)
 
         try:
             if loop == 0:
-                popped = queue.pop(0)
-                await auto_clean(popped)
+                popped = check.pop(0)
             else:
                 await set_loop(chat_id, loop - 1)
+                popped = None
 
-            if not queue:
+            await auto_clean(popped)
+
+            if not check:
                 await _clear_(chat_id)
                 return await client.leave_group_call(chat_id)
-
         except Exception:
             await _clear_(chat_id)
-            return
+            return await client.leave_group_call(chat_id)
 
-        data = queue[0]
-        file = data["file"]
-        streamtype = data["streamtype"]
+        next_file = check[0]["file"]
+        video = check[0]["streamtype"] == "video"
 
         stream = (
             AudioVideoPiped(
-                file,
+                next_file,
                 audio_parameters=HighQualityAudio(),
                 video_parameters=MediumQualityVideo(),
             )
-            if streamtype == "video"
-            else AudioPiped(file, audio_parameters=HighQualityAudio())
+            if video
+            else AudioPiped(next_file, audio_parameters=HighQualityAudio())
         )
 
-        try:
-            await client.change_stream(chat_id, stream)
-        except Exception:
-            await _clear_(chat_id)
-            return
-
-    # ───────────── EVENTS ───────────── #
+        await client.change_stream(chat_id, stream)
 
     async def start(self):
-        LOGGER(__name__).info("Starting PyTgCalls Client")
+        LOGGER(__name__).info("Starting PyTgCalls 2.2.6 Client...")
+        await self.userbot1.start()
         await self.one.start()
 
     async def decorators(self):
         @self.one.on_stream_end()
-        async def stream_end(_, update: Update):
-            if isinstance(update, StreamAudioEnded):
-                await self.change_stream(_, update.chat_id)
-
-        @self.one.on_left()
-        @self.one.on_kicked()
-        @self.one.on_closed_voice_chat()
-        async def leave_handler(_, chat_id: int):
-            await self.stop_stream(chat_id)
+        async def stream_end_handler(client, update: Update):
+            if not isinstance(update, StreamEnded):
+                return
+            await self.change_stream(client, update.chat_id)
 
 
 PRO = Call()
