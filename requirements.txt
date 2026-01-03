@@ -1,52 +1,81 @@
+# ================= CORE ASYNC =================
 aiofiles
 aiohttp
 apscheduler
 asyncio
+
+# ================= SCRAPING / APIS =================
+bard
+bing_image_downloader
 beautifulsoup4
+bs4
 cloudscraper
+deepai
 dnspython
-emojis
-ffmpeg-python
-Faker
-future==1.0.0
-gitpython
 gpytranslate
-gtts
-hachoir
-heroku3
 httpx==0.28.1
-img2pdf
-instaloader
-motor
-numpy<2.0.0
-opencv-python
-pillow==9.5.0
-psutil
-pickledb
-pycountry
-pycryptodome
-pydub
-pyfiglet
-pytz
-pyyaml==6.0.1
-qrcode
-requests
+lexica-api
 search_engine_parser
-speedtest-cli
+SafoneAPI
+git+https://github.com/AsmSafone/SafoneAPI
+
+# ================= MEDIA / AUDIO =================
+ffmpeg-python
+pydub
+gtts
 SpeechRecognition
-spotipy
-telegraph
-tgcrypto
-unidecode
-wget
+pyttsx3
 yt-dlp
 youtube-search
 youtube-search-python
+pytube
+
+# ================= IMAGE / FILE =================
+pillow==9.5.0
+opencv-python
+img2pdf
+qrcode
+hachoir
+
+# ================= TELEGRAM =================
+# Pyrogram fork (stable with pytgcalls 0.9.7)
+git+https://github.com/KurimuzonAkuma/pyrogram.git
+tgcrypto
+
+# Voice / VC calls (DO NOT UPGRADE)
+pytgcalls==0.9.7
+ntgcalls==2.0.6
+
+# ================= DATABASE =================
+motor
+pickledb
+pymongo
+
+# ================= UTILITIES =================
+Faker
+future==1.0.0
+gitpython
+heroku3
+numpy<2.0.0
+psutil
+pycountry
+pycryptodome
+pyfiglet
+pykeyboard
+python-dotenv
+python-whois
+pyshorteners
+pytz
+requests
+speedtest-cli
+spotipy
+telegraph
+unidecode
+wget
 flask
 
-# 🔴 TELEGRAM CORE (LOCKED)
-pyrogram==2.0.106
-
-# 🔴 VOICE CALLS (LOCKED)
-git+https://github.com/Laky-64/pytgcalls.git@0.9.7
-ntgcalls==2.0.6
+# ================= DISABLED / REMOVED =================
+# python-telegram-bot ❌ (conflicts with pyrogram)
+# py-tgcalls ❌ (wrong package)
+# openai==0.28.0 ❌ (deprecated, breaks newer deps)
+# pornhub-api ❌ (often broken)
