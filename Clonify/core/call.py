@@ -6,18 +6,14 @@ from typing import Union
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
 
-from pytgcalls import PyTgCalls
+from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types import Update
-from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
 from pytgcalls.types.stream import StreamEnded
-from pytgcalls.exceptions import (
-    AlreadyJoinedError,
-    NoActiveGroupCall,
-    NotInGroupCall,
-    TelegramServerError,
-)
-from ntgcalls import StreamType
+from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall, NotInGroupCall, TelegramServerError
+
+# NEW: input streams moved here in 2.2.6
+from pytgcalls.types.input_streams import AudioPiped, AudioVideoPiped
+from pytgcalls.types.input_streams.quality import HighQualityAudio, MediumQualityVideo
 
 import config
 from Clonify import LOGGER, YouTube, app
