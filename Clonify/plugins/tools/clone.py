@@ -1,344 +1,197 @@
-import re
-import logging
 import asyncio
-import importlib
-from sys import argv
-from pyrogram import idle
+import logging
+import requests
+from datetime import datetime
+
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.errors.exceptions.bad_request_400 import (
-    AccessTokenExpired,
-    AccessTokenInvalid,
+from pyrogram.errors import AccessTokenExpired, AccessTokenInvalid
+
+from Clonify import app
+from Clonify.misc import SUDOERS
+from Clonify.utils.decorators.language import language
+from Clonify.utils.database.clonedb import (
+    clonebotdb,
+    has_user_cloned_any_bot,
+    get_owner_id_from_db,
 )
 from Clonify.utils.database import get_assistant
-from config import API_ID, API_HASH
-from Clonify import app
-from config import OWNER_ID
-from Clonify.misc import SUDOERS
-from Clonify.utils.database import get_assistant, clonebotdb
-from Clonify.utils.database.clonedb import has_user_cloned_any_bot
-from config import LOGGER_ID, CLONE_LOGGER
-import requests
-from Clonify.utils.decorators.language import language
-import pyrogram.errors
 
-from Clonify.utils.database.clonedb import get_owner_id_from_db
-from config import SUPPORT_CHAT, OWNER_ID
+from config import (
+    API_ID,
+    API_HASH,
+    OWNER_ID,
+    SUPPORT_CHAT,
+    CLONE_LOGGER,
+)
 
-from datetime import datetime
+# ===================== CONSTANTS ===================== #
+
 CLONES = set()
 
-C_BOT_DESC = "Wᴀɴᴛ ᴀ ʙᴏᴛ ʟɪᴋᴇ ᴛʜɪs? Cʟᴏɴᴇ ɪᴛ ɴᴏᴡ! ✅\n\nVɪsɪᴛ: @HinduMusicRobot ᴛᴏ ɢᴇᴛ sᴛᴀʀᴛᴇᴅ!\n\n - Uᴘᴅᴀᴛᴇ: @NOBITA_MUSIC_SUPPORT\n - Sᴜᴘᴘᴏʀᴛ: @GOJO_NOBITA_II"
+C_BOT_DESC = (
+    "Wᴀɴᴛ ᴀ ʙᴏᴛ ʟɪᴋᴇ ᴛʜɪs? Cʟᴏɴᴇ ɪᴛ ɴᴏᴡ! ✅\n\n"
+    "Vɪsɪᴛ: @HinduMusicRobot\n"
+    "Sᴜᴘᴘᴏʀᴛ: @GOJO_NOBITA_II"
+)
 
 C_BOT_COMMANDS = [
-                {"command": "/start", "description": "sᴛᴀʀᴛs ᴛʜᴇ ᴍᴜsɪᴄ ʙᴏᴛ"},
-                {"command": "/help", "description": "ɢᴇᴛ ʜᴇʟᴩ ᴍᴇɴᴜ ᴡɪᴛʜ ᴇxᴩʟᴀɴᴀᴛɪᴏɴ ᴏғ ᴄᴏᴍᴍᴀɴᴅs."},
-                {"command": "/play", "description": "sᴛᴀʀᴛs sᴛʀᴇᴀᴍɪɴɢ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴛʀᴀᴄᴋ ᴏɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ."},
-                {"command": "/pause", "description": "ᴩᴀᴜsᴇ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ᴩʟᴀʏɪɴɢ sᴛʀᴇᴀᴍ."},
-                {"command": "/resume", "description": "ʀᴇsᴜᴍᴇ ᴛʜᴇ ᴩᴀᴜsᴇᴅ sᴛʀᴇᴀᴍ."},
-                {"command": "/skip", "description": "ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ᴩʟᴀʏɪɴɢ sᴛʀᴇᴀᴍ ᴀɴᴅ sᴛᴀʀᴛ sᴛʀᴇᴀᴍɪɴɢ ᴛʜᴇ ɴᴇxᴛ ᴛʀᴀᴄᴋ ɪɴ ǫᴜᴇᴜᴇ."},
-                {"command": "/end", "description": "ᴄʟᴇᴀʀs ᴛʜᴇ ǫᴜᴇᴜᴇ ᴀɴᴅ ᴇɴᴅ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ᴩʟᴀʏɪɴɢ sᴛʀᴇᴀᴍ."},
-                {"command": "/ping", "description": "ᴛʜᴇ ᴩɪɴɢ ᴀɴᴅ sʏsᴛᴇᴍ sᴛᴀᴛs ᴏғ ᴛʜᴇ ʙᴏᴛ."},
-                {"command": "/id", "description": "ɢᴇᴛ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ɢʀᴏᴜᴘ ɪᴅ. ɪғ ᴜsᴇᴅ ʙʏ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ, ɢᴇᴛs ᴛʜᴀᴛ ᴜsᴇʀ's ɪᴅ."}
+    {"command": "start", "description": "Start the bot"},
+    {"command": "help", "description": "Help menu"},
+    {"command": "play", "description": "Play music"},
+    {"command": "pause", "description": "Pause stream"},
+    {"command": "resume", "description": "Resume stream"},
+    {"command": "skip", "description": "Skip track"},
+    {"command": "end", "description": "End stream"},
+    {"command": "ping", "description": "Ping bot"},
+    {"command": "id", "description": "Get ID"},
+]
 
-            ]
-
+# ===================== CLONE COMMAND ===================== #
 
 @app.on_message(filters.command("clone"))
 @language
-async def clone_txt(client, message, _):
-    userbot = await get_assistant(message.chat.id)
+async def clone_bot(client, message, _):
+    user_id = message.from_user.id
 
-    userid = message.from_user.id
-    has_already_cbot = await has_user_cloned_any_bot(userid)
+    if await has_user_cloned_any_bot(user_id) and user_id != OWNER_ID:
+        return await message.reply_text(_["C_B_H_0"])
 
-    if has_already_cbot:
-        if message.from_user.id != OWNER_ID:
-            return await message.reply_text(_["C_B_H_0"])
-    else:
-        pass
-    
+    if len(message.command) < 2:
+        return await message.reply_text(_["C_B_H_1"])
 
-    if len(message.command) > 1:
-        bot_token = message.text.split("/clone", 1)[1].strip()
-        mi = await message.reply_text(_["C_B_H_2"])
-        try:
-            ai = Client(
-                bot_token,
-                API_ID,
-                API_HASH,
-                bot_token=bot_token,
-                plugins=dict(root="Clonify.cplugin"), 
-            )
-            await ai.start()
-            bot = await ai.get_me()
-            bot_users = await ai.get_users(bot.username)
-            bot_id = bot_users.id
-            c_b_owner_fname = message.from_user.first_name
-            c_bot_owner = message.from_user.id
+    bot_token = message.command[1].strip()
+    msg = await message.reply_text(_["C_B_H_2"])
 
-        except (AccessTokenExpired, AccessTokenInvalid):
-            await mi.edit_text(_["C_B_H_3"])
-            return
-        except Exception as e:
-            if "database is locked" in str(e).lower():
-                await message.reply_text(_["C_B_H_4"])
-            else:
-                await mi.edit_text(f"An error occurred: {str(e)}")
-            return
-
-        await mi.edit_text(_["C_B_H_5"])
-        try:
-
-            await app.send_message(
-                CLONE_LOGGER, f"**#NewClonedBot**\n\n**Bᴏᴛ:- {bot.mention}**\n**Usᴇʀɴᴀᴍᴇ:** @{bot.username}\n**Bᴏᴛ ID :** `{bot_id}`\n\n**Oᴡɴᴇʀ : ** [{c_b_owner_fname}](tg://user?id={c_bot_owner})"
-            )
-            await userbot.send_message(bot.username, "/start")
-
-            details = {
-                "bot_id": bot.id,
-                "is_bot": True,
-                "user_id": message.from_user.id,
-                "name": bot.first_name,
-                "token": bot_token,
-                "username": bot.username,
-                "channel": "ProBotts",
-                "support": "ProBotGc",
-                "premium" : False,
-                "Date" : False,
-            }
-            clonebotdb.insert_one(details)
-            CLONES.add(bot.id)
-
-            def set_bot_commands():
-                url = f"https://api.telegram.org/bot{bot_token}/setMyCommands"
-                
-                params = {"commands": C_BOT_COMMANDS}
-                response = requests.post(url, json=params)
-                print(response.json())
-
-            set_bot_commands()
-
-            def set_bot_desc():
-                url = f"https://api.telegram.org/bot{bot_token}/setMyDescription"
-                params = {"description": C_BOT_DESC}
-                response = requests.post(url, data=params)
-                if response.status_code == 200:
-                    logging.info(f"Successfully updated Description for bot: {bot_token}")
-                else:
-                    logging.error(f"Failed to update Description: {response.text}")
-
-            set_bot_desc()
-
-            await mi.edit_text(_["C_B_H_6"].format(bot.username))
-        except BaseException as e:
-            logging.exception("Error while cloning bot.")
-            await mi.edit_text(
-                f"⚠️ <b>ᴇʀʀᴏʀ:</b>\n\n<code>{e}</code>\n\n**ᴋɪɴᴅʟʏ ғᴏᴡᴀʀᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ @GOJO_NOBITA_II ᴛᴏ ɢᴇᴛ ᴀssɪsᴛᴀɴᴄᴇ**"
-            )
-    else:
-        await message.reply_text(_["C_B_H_1"])
-
-
-@app.on_message(
-    filters.command(
-        [
-            "delbot",
-            "rmbot",
-            "delcloned",
-            "delclone",
-            "deleteclone",
-            "removeclone",
-            "cancelclone",
-        ]
-    )
-)
-@language
-async def delete_cloned_bot(client, message, _):
     try:
-        if len(message.command) < 2:
-            await message.reply_text(_["C_B_H_8"])
-            return
+        ai = Client(
+            name=None,                  # 🔥 NO SQLITE
+            api_id=API_ID,
+            api_hash=API_HASH,
+            bot_token=bot_token,
+            plugins=dict(root="Clonify.cplugin"),
+        )
+        await ai.start()
+        bot = await ai.get_me()
 
-        query_value = " ".join(message.command[1:])
-        if query_value.startswith("@"):
-            query_value = query_value[1:]
-        await message.reply_text(_["C_B_H_9"])
-
-        cloned_bot = clonebotdb.find_one({"$or": [{"token": query_value}, {"username": query_value}]})
-        
-        if cloned_bot:
-
-            bot_info = f"**Bot ID**: `{cloned_bot['bot_id']}`\n" \
-           f"**Bᴏᴛ Nᴀᴍᴇ**: {cloned_bot['name']}\n" \
-           f"**Usᴇʀɴᴀᴍᴇ**: @{cloned_bot['username']}\n" \
-           f"**Tᴏᴋᴇɴ**: `{cloned_bot['token']}`\n" \
-           f"**Oᴡɴᴇʀ**: `{cloned_bot['user_id']}`\n"
-
-            C_OWNER = get_owner_id_from_db(cloned_bot['bot_id'])
-            OWNERS = [OWNER_ID, C_OWNER]
-
-            if message.from_user.id not in OWNERS:
-                return await message.reply_text(_["NOT_C_OWNER"].format(SUPPORT_CHAT))
-
-            clonebotdb.delete_one({"_id": cloned_bot["_id"]})
-            CLONES.remove(cloned_bot["bot_id"])
-
-            await message.reply_text(_["C_B_H_10"])
-            await app.send_message(
-                CLONE_LOGGER, bot_info
-            )
-        else:
-            await message.reply_text(_["C_B_H_11"])
+    except (AccessTokenExpired, AccessTokenInvalid):
+        return await msg.edit_text(_["C_B_H_3"])
     except Exception as e:
-        await message.reply_text(_["C_B_H_12"])
-        await app.send_message(
-                CLONE_LOGGER, bot_info
-            )
-        logging.exception(e)
+        return await msg.edit_text(f"❌ Error: `{e}`")
 
+    clonebotdb.insert_one(
+        {
+            "bot_id": bot.id,
+            "user_id": user_id,
+            "name": bot.first_name,
+            "username": bot.username,
+            "token": bot_token,
+            "premium": False,
+            "date": datetime.utcnow(),
+        }
+    )
+
+    CLONES.add(bot.id)
+
+    # Set commands
+    requests.post(
+        f"https://api.telegram.org/bot{bot_token}/setMyCommands",
+        json={"commands": C_BOT_COMMANDS},
+    )
+
+    # Set description
+    requests.post(
+        f"https://api.telegram.org/bot{bot_token}/setMyDescription",
+        data={"description": C_BOT_DESC},
+    )
+
+    await app.send_message(
+        CLONE_LOGGER,
+        f"🤖 **New Clone**\n\n"
+        f"Bot: @{bot.username}\n"
+        f"Owner: [{message.from_user.first_name}](tg://user?id={user_id})",
+    )
+
+    await msg.edit_text(_["C_B_H_6"].format(bot.username))
+
+
+# ===================== DELETE CLONE ===================== #
+
+@app.on_message(filters.command(["delclone", "delbot", "rmbot"]))
+@language
+async def delete_clone(client, message, _):
+    if len(message.command) < 2:
+        return await message.reply_text(_["C_B_H_8"])
+
+    query = message.command[1].lstrip("@")
+    bot = clonebotdb.find_one(
+        {"$or": [{"username": query}, {"token": query}]}
+    )
+
+    if not bot:
+        return await message.reply_text(_["C_B_H_11"])
+
+    owner = get_owner_id_from_db(bot["bot_id"])
+    if message.from_user.id not in [OWNER_ID, owner]:
+        return await message.reply_text(_["NOT_C_OWNER"].format(SUPPORT_CHAT))
+
+    clonebotdb.delete_one({"_id": bot["_id"]})
+    CLONES.discard(bot["bot_id"])
+
+    await message.reply_text(_["C_B_H_10"])
+
+
+# ===================== RESTART CLONES (SAFE) ===================== #
 
 async def restart_bots():
-    global CLONES
-    try:
-        logging.info("Restarting all cloned bots........")
-        bots = list(clonebotdb.find())
-        botNumber = 1
-        for bot in bots:
-            bot_token = bot["token"]
+    logging.info("Starting cloned bots safely...")
 
-            url = f"https://api.telegram.org/bot{bot_token}/getMe"
-            response = requests.get(url)
-            if response.status_code != 200:
-                logging.error(f"Invalid or expired token for bot: {bot_token}")
-                clonebotdb.delete_one({"token": bot_token})
-                continue
-
+    for bot in clonebotdb.find():
+        try:
             ai = Client(
-                f"{bot_token}",
-                API_ID,
-                API_HASH,
-                bot_token=bot_token,
+                name=None,              # 🔥 NO SQLITE
+                api_id=API_ID,
+                api_hash=API_HASH,
+                bot_token=bot["token"],
                 plugins=dict(root="Clonify.cplugin"),
             )
             await ai.start()
-            print(botNumber)
-            botNumber += 1
+            me = await ai.get_me()
+            CLONES.add(me.id)
+            await asyncio.sleep(2)
 
-            bot = await ai.get_me()
-            if bot.id not in CLONES:
-                try:
-                    CLONES.add(bot.id)
-                except Exception:
-                    pass
+        except Exception as e:
+            logging.error(f"Skipped clone restart: {e}")
 
-            await asyncio.sleep(5)
+    await app.send_message(CLONE_LOGGER, "✅ All cloned bots started safely.")
 
-        await app.send_message(
-                CLONE_LOGGER, f"All Cloned Bots Started !"
-            )
-    except Exception as e:
-        logging.exception("Error while restarting bots.")
 
-# Zeo
-@app.on_message(filters.command("delallclone") & filters.user(OWNER_ID))
+# ===================== LIST USER CLONES ===================== #
+
+@app.on_message(filters.command(["mybots", "mybot"]))
 @language
-async def delete_all_cloned_bots(client, message, _):
-    try:
-        await message.reply_text(_["C_B_H_14"])
+async def my_bots(client, message, _):
+    bots = list(clonebotdb.find({"user_id": message.from_user.id}))
 
-        clonebotdb.delete_many({})
+    if not bots:
+        return await message.reply_text(_["C_B_H_16"])
 
-        CLONES.clear()
+    text = f"**Your Cloned Bots ({len(bots)}):**\n\n"
+    for b in bots:
+        text += f"• @{b['username']}\n"
 
-        await message.reply_text(_["C_B_H_15"])
-    except Exception as e:
-        await message.reply_text("An error occurred while deleting all cloned bots.")
-        logging.exception(e)
-
-
-@app.on_message(filters.command(["mybot", "mybots"], prefixes=["/", "."]))
-@language
-async def my_cloned_bots(client, message, _):
-    try:
-        user_id = message.from_user.id
-        cloned_bots = list(clonebotdb.find({"user_id": user_id}))
-        
-        if not cloned_bots:
-            await message.reply_text(_["C_B_H_16"])
-            return
-        
-        total_clones = len(cloned_bots)
-        text = f"**Yᴏᴜʀ Cʟᴏɴᴇᴅ Bᴏᴛs: {total_clones}**\n\n"
-        
-        for bot in cloned_bots:
-            text += f"**Bᴏᴛ Nᴀᴍᴇs:** {bot['name']}\n"
-            text += f"**Bᴏᴛ Usᴇʀɴᴀᴍᴇ:** @{bot['username']}\n\n"
-        
-        await message.reply_text(text)
-    except Exception as e:
-        logging.exception(e)
-        await message.reply_text("An error occurred while fetching your cloned bots.")
+    await message.reply_text(text)
 
 
+# ===================== ADMIN LIST ===================== #
 
 @app.on_message(filters.command("cloned") & SUDOERS)
 @language
-async def list_cloned_bots(client, message, _):
-    try:
-        cloned_bots = list(clonebotdb.find())
-        if not cloned_bots:
-            await message.reply_text(_["C_B_H_13"])
-            return
+async def list_all_clones(client, message, _):
+    bots = list(clonebotdb.find())
 
-        total_clones = len(cloned_bots)
-        text = f"**Tᴏᴛᴀʟ Cʟᴏɴᴇᴅ Bᴏᴛs: `{total_clones}`**\n\n"
+    text = f"**Total Clones:** `{len(bots)}`\n\n"
+    for b in bots:
+        text += f"• @{b['username']} (`{b['bot_id']}`)\n"
 
-        chunk_size = 10
-        chunks = [cloned_bots[i:i + chunk_size] for i in range(0, len(cloned_bots), chunk_size)]
-
-        for chunk in chunks:
-            chunk_text = text
-            for bot in chunk:
-                try:
-                    owner = await client.get_users(bot['user_id'])
-                    owner_name = owner.first_name
-                    owner_profile_link = f"tg://user?id={bot['user_id']}"
-                except pyrogram.errors.PeerIdInvalid:
-                    owner_name = "Unknown User"
-                    owner_profile_link = "#"
-                except Exception as e:
-                    logging.error(f"Error fetching user {bot['user_id']}: {e}")
-                    owner_name = "Unknown User"
-                    owner_profile_link = "#"
-
-                chunk_text += f"**Bᴏᴛ ID:** `{bot['bot_id']}`\n"
-                chunk_text += f"**Bᴏᴛ Nᴀᴍᴇ:** {bot['name']}\n"
-                chunk_text += f"**Bᴏᴛ Usᴇʀɴᴀᴍᴇ:** @{bot['username']}\n"
-                chunk_text += f"**Oᴡɴᴇʀ:** [{owner_name}]({owner_profile_link})\n\n"
-
-            await message.reply_text(chunk_text)
-
-    except Exception as e:
-        logging.exception(e)
-        await message.reply_text("An error occurred while listing cloned bots.")
-
-
-
-#total clone
-@app.on_message(filters.command("totalbots") & SUDOERS)
-@language
-async def list_cloned_bots(client, message, _):
-    try:
-        cloned_bots = list(clonebotdb.find())
-        if not cloned_bots:
-            await message.reply_text("No bots have been cloned yet.")
-            return
-
-        total_clones = len(cloned_bots)
-        text = f"**Tᴏᴛᴀʟ Cʟᴏɴᴇᴅ Bᴏᴛs: `{total_clones}`**\n\n"         
-
-        await message.reply_text(text)
-    except Exception as e:
-        logging.exception(e)
-        await message.reply_text("An error occurred while listing cloned bots.")
+    await message.reply_text(text)
