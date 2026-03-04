@@ -1,3 +1,4 @@
+import os
 import re
 from os import getenv
 # ------------------------------------
@@ -9,58 +10,58 @@ from pyrogram import filters
 load_dotenv()
 # ------------------------------------
 # -----------------------------------------------------
-API_ID = int(getenv("API_ID", "33638160"))
-API_HASH = getenv("API_HASH", "3a0caeb09828e19cb8c17e18d4911bfa")
+API_ID = int(os.getenv("API_ID", "33638160"))
+API_HASH = os.getenv("API_HASH", "3a0caeb09828e19cb8c17e18d4911bfa")
 # ------------------------------------------------------
-BOT_TOKEN = getenv("BOT_TOKEN", "")
-BOT_ID = getenv("BOT_ID", "8357362231")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+BOT_ID = os.getenv("BOT_ID", "8357362231")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","owner_pf_itachi")
+OWNER_USERNAME = os.getenv("OWNER_USERNAME","owner_pf_itachi")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "dark_powerfull_bot")
+BOT_USERNAME = os.getenv("BOT_USERNAME" , "dark_powerfull_bot")
 # --------------------------------------------------------
-BOT_NAME = getenv("BOT_NAME" , "˹𝐃ᴧ፝֟ʀᴋ ꭙ 𝚱ηɪ፝֟ɢʜᴛ˼ [ ϻυʂɪᴄ~♪ ]")
+BOT_NAME = os.getenv("BOT_NAME" , "˹𝐃ᴧ፝֟ʀᴋ ꭙ 𝚱ηɪ፝֟ɢʜᴛ˼ [ ϻυʂɪᴄ~♪ ]")
 # ---------------------------------------------------------
-ASSUSERNAME = getenv("ASSUSERNAME" , "dark_assist_1")
+ASSUSERNAME = os.getenv("ASSUSERNAME" , "dark_assist_1")
 # ---------------------------------------------------------
 
 
 #---------------------------------------------------------------
 #---------------------------------------------------------------
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://knight4563:knight4563@cluster0.a5br0se.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-API_KEY = getenv("API_KEY")
+MONGO_DB_URI = os.getenv("MONGO_DB_URI", "mongodb+srv://knight4563:knight4563@cluster0.a5br0se.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+API_KEY = oa.getenv("API_KEY")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 
 # ----------------------------------------------------------------
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 17000))
+DURATION_LIMIT_MIN = int(os.getenv("DURATION_LIMIT", 17000))
 # ----------------------------------------------------------------
 
 # ----------------------------------------------------------------
-LOGGER_ID = int(getenv("LOGGER_ID", "-1003228624224"))
+LOGGER_ID = int(os.getenv("LOGGER_ID", "-1003228624224"))
 CLONE_LOGGER = LOGGER_ID
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-OWNER_ID = int(getenv("OWNER_ID", 7651303468))
+OWNER_ID = int(oa.getenv("OWNER_ID", 7651303468))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # config.py
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
+HEROKU_APP_NAME = os.getenv("HEROKU_APP_NAME")
 # ----------------------------------------------------------------
-HEROKU_API_KEY = getenv("HEROKU_API_KEY")
+HEROKU_API_KEY = os.getenv("HEROKU_API_KEY")
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-SOURCE = getenv("SOURCE", "https://github.com/itzarjuna1/InfiniteClone")
-UPSTREAM_REPO = getenv(
+SOURCE = os.getenv("SOURCE", "https://github.com/itzarjuna1/InfiniteClone")
+UPSTREAM_REPO = os,getenv(
     "UPSTREAM_REPO",
     "https://github.com/itzarjuna1/InfiniteClone",
 )
-UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
-GIT_TOKEN = getenv(
+UPSTREAM_BRANCH = os.getenv("UPSTREAM_BRANCH", "master")
+GIT_TOKEN = os.getenv(
     "GIT_TOKEN", None
 )
 # --------------------------------------------------------------------
@@ -72,9 +73,9 @@ GIT_TOKEN = getenv(
 
 # ------------------------------------------------------------------------
 # -------------------------------------------------------------------------
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/dark_muisctm")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/dark_musicsupport")
-CHAT = getenv("CHAT", "https://t.me/snowy_hometown")
+SUPPORT_CHANNEL = os.getenv("SUPPORT_CHANNEL", "https://t.me/dark_muisctm")
+SUPPORT_CHAT = os.getenv("SUPPORT_CHAT", "https://t.me/yukieee_03")
+CHAT = os.getenv("CHAT", "https://t.me/snowy_hometown")
 # ------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------
 
@@ -88,29 +89,29 @@ CHAT = getenv("CHAT", "https://t.me/snowy_hometown")
 # --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------
-AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
-AUTO_LEAVE_ASSISTANT_TIME = int(getenv("ASSISTANT_LEAVE_TIME", "9000"))
-SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION", "9999999"))
-SONG_DOWNLOAD_DURATION_LIMIT = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "9999999"))
+AUTO_LEAVING_ASSISTANT = os.getenv("AUTO_LEAVING_ASSISTANT", "False")
+AUTO_LEAVE_ASSISTANT_TIME = int(os.getenv("ASSISTANT_LEAVE_TIME", "9000"))
+SONG_DOWNLOAD_DURATION = int(os.getenv("SONG_DOWNLOAD_DURATION", "9999999"))
+SONG_DOWNLOAD_DURATION_LIMIT = int(os.getenv("SONG_DOWNLOAD_DURATION_LIMIT", "9999999"))
 # --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------------
 SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "1c21247d714244ddbb09925dac565aed")
-SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", "709e1a2969664491b58200860623ef19")
+SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "709e1a2969664491b58200860623ef19")
 # ----------------------------------------------------------------------------------
 
 
 
 
 # -----------------------------------------------------------------------------------
-PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", 25))
+PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT", 25))
 # ------------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------------
-TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", "5242880000"))
-TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
+TG_AUDIO_FILESIZE_LIMIT = int(os.getenv("TG_AUDIO_FILESIZE_LIMIT", "5242880000"))
+TG_VIDEO_FILESIZE_LIMIT = int(os.getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # --------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------
 
@@ -122,8 +123,8 @@ TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "5242880000"))
 # ------------------------------------
 # ================= STRING SESSION ================= #
 
-STRING_SESSION = getenv("STRING_SESSION", "")
-STRING_SESSION2 = getenv("STRING_SESSION2", None)
+STRING_SESSION = os.getenv("STRING_SESSION", "")
+STRING_SESSION2 = os.getenv("STRING_SESSION2", None)
 
 # backward compatibility (agar project me kahin STRING1 use ho)
 STRING1 = STRING_SESSION
@@ -156,26 +157,26 @@ STREAMI_PICS = [
 ]
 
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://files.catbox.moe/qpmy2w.mp4"
+    "START_IMG_URL", "https://files.catbox.moe/5gpd4g.jpg"
 )
 
 HELP_IMG_URL = getenv(
-    "HELP_IMG_URL", "https://files.catbox.moe/06ciea.mp4"
+    "HELP_IMG_URL", "https://files.catbox.moe/5gpd4g.jpg"
 )
 
 PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://files.catbox.moe/tjxy2c.jpg"
+    "PING_IMG_URL", "https://files.catbox.moe/5gpd4g.jpg"
 )
-PLAYLIST_IMG_URL = "https://files.catbox.moe/pdd3th.jpeg"
-STATS_IMG_URL = "https://files.catbox.moe/jpovwg.jpeg"
-TELEGRAM_AUDIO_URL = "https://files.catbox.moe/pdd3th.jpeg"
-TELEGRAM_VIDEO_URL = "https://files.catbox.moe/1p0r3g.jpeg"
-STREAM_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
-SOUNCLOUD_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
-YOUTUBE_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
-SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
-SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/pyv8vo.jpeg"
+PLAYLIST_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
+STATS_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
+TELEGRAM_AUDIO_URL = "https://files.catbox.moe/5gpd4g.jpg"
+TELEGRAM_VIDEO_URL = "https://files.catbox.moe/5gpd4g.jpg"
+STREAM_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
+SOUNCLOUD_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
+YOUTUBE_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
+SPOTIFY_ARTIST_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
+SPOTIFY_ALBUM_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
 
 # ------------------------------------------------------------------------
 # ------------------------------------------------------------------------
