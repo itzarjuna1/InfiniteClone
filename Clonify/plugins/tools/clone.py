@@ -33,8 +33,8 @@ CLONES = set()
 
 C_BOT_DESC = (
     "Wᴀɴᴛ ᴀ ʙᴏᴛ ʟɪᴋᴇ ᴛʜɪs? Cʟᴏɴᴇ ɪᴛ ɴᴏᴡ! ✅\n\n"
-    "Vɪsɪᴛ: @Destiny_Infinity_Og\n"
-    "Sᴜᴘᴘᴏʀᴛ: @Cuties_logs"
+    "Vɪsɪᴛ: @dark_musictm\n"
+    "Sᴜᴘᴘᴏʀᴛ: @yukieee_03"
 )
 
 C_BOT_COMMANDS = [
