@@ -56,7 +56,7 @@ HEROKU_API_KEY = os.getenv("HEROKU_API_KEY")
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
 SOURCE = os.getenv("SOURCE", "https://github.com/itzarjuna1/InfiniteClone")
-UPSTREAM_REPO = os,getenv(
+UPSTREAM_REPO = os.getenv(
     "UPSTREAM_REPO",
     "https://github.com/itzarjuna1/InfiniteClone",
 )
