@@ -341,51 +341,47 @@ song_11 : "ᴜᴘʟᴏᴀᴅɪɴɢ sᴛᴀʀᴛᴇᴅ ʙᴀʙʏ\n\nᴘʟᴇᴀs�
 
 # New Clone !
 
-BOT_DESC : "<blockquote>Wᴀɴᴛ ᴀ ʙᴏᴛ ʟɪᴋᴇ ᴛʜɪs? Cʟᴏɴᴇ ɪᴛ ɴᴏᴡ! ✅\n\nVɪsɪᴛ: @dark_powerfull_bot ᴛᴏ ɢᴇᴛ sᴛᴀʀᴛᴇᴅ!\n\n - Uᴘᴅᴀᴛᴇ: @dark_musictm\n - Sᴜᴘᴘᴏʀᴛ: @snowy_hometown</blockquote>"
-
-C_B_1 : "ᴄʟᴏɴᴇ ғᴇᴀᴛᴜʀᴇs"
-C_B_2 : "ᴏᴡɴᴇʀ"
-C_B_3 : "ᴄʀᴇᴀᴛᴇ ᴏᴡɴ ʙᴏᴛ"
+C_B_1 : "⬤ ᴄʟᴏɴᴇ ғᴇᴀᴛᴜʀᴇs 📢"
+C_B_2 : "⬤ σᴡηєʀ 👑"
+C_B_3 : "⬤ ᴄʀєᴧᴛє ʏσᴜʀ σᴡη ʙσᴛ 🚀"
 
 C_B_H_0 : "<blockquote>【Yᴏᴜ ʜᴀᴠᴇ ᴀʟʀᴇᴀᴅʏ ᴄʟᴏɴᴇᴅ ᴀ ʙᴏᴛ!】</blockquote>"
-C_B_H_1 : "<blockquote>**Pʀᴏᴠɪᴅᴇ Bᴏᴛ Tᴏᴋᴇɴ ᴀғᴛᴇʀ /clone Cᴏᴍᴍᴀɴᴅ ғʀᴏᴍ @Botfather.**\n\n**Exᴀᴍᴘʟᴇ:** `/clone bot token paste here`</blockquote>"
+C_B_H_1 : "<blockquote><b><i>ᴘʀσᴠɪᴅє ʙσᴛ ᴛσᴋєη ᴀғᴛєʀ /ᴄʟσηє ᴄσϻϻᴀηᴅ ғʀσϻ 🔐🤍 @Botfather.**\n\n**Exᴀᴍᴘʟᴇ:** `/clone bot token paste here`</i></b></blockquote>"
 C_B_H_2 : "<blockquote>Pʟᴇᴀsᴇ ᴡᴀɪᴛ ᴡʜɪʟᴇ I ᴘʀᴏᴄᴇss ᴛʜᴇ ʙᴏᴛ ᴛᴏᴋᴇɴ.</blockquote>"
 C_B_H_3 : "<blockquote>Yᴏᴜ ʜᴀᴠᴇ ᴘʀᴏᴠɪᴅᴇᴅ ᴀɴ ɪɴᴠᴀʟɪᴅ ʙᴏᴛ ᴛᴏᴋᴇɴ. Pʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴀ ᴠᴀʟɪᴅ ʙᴏᴛ ᴛᴏᴋᴇɴ.</blockquote>"
 C_B_H_4 : "<blockquote>Tᴏᴏ ᴍᴀɴʏ ᴄʟᴏɴᴇs ᴀʀᴇ ʙᴇɪɴɢ ᴘʀᴏᴄᴇssᴇᴅ ᴀᴛ ᴛʜᴇ ᴍᴏᴍᴇɴᴛ. Pʟᴇᴀsᴇ ᴡᴀɪᴛ ғᴏʀ 𝟷𝟶 ᴍɪɴᴜᴛᴇs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ.</blockquote>"
 C_B_H_5 : "<blockquote>Cʟᴏɴɪɴɢ ᴘʀᴏᴄᴇss sᴛᴀʀᴛᴇᴅ. Pʟᴇᴀsᴇ ᴡᴀɪᴛ ғᴏʀ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ʙᴇ sᴛᴀʀᴛ.</blockquote>"
 C_B_H_6 : "<blockquote>Bᴏᴛ @{0} ʜᴀs ʙᴇᴇɴ sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʟᴏɴᴇᴅ ᴀɴᴅ sᴛᴀʀᴛᴇᴅ ✅.\n**Rᴇᴍᴏᴠᴇ ᴄʟᴏɴᴇᴅ ʙʏ :- `/rmbot` **</blockquote>"
-C_B_H_7 : "<blockquote>⚠️ <b>ᴇʀʀᴏʀ:</b>\n\n<code>{e}</code>\n\n**ᴋɪɴᴅʟʏ ғᴏᴡᴀʀᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ @GOJO_SUPPORT_GROUP_II ᴛᴏ ɢᴇᴛ ᴀssɪsᴛᴀɴᴄᴇ**</blockquote>"
-C_B_H_8 : "<blockquote>**Pʀᴏᴠɪᴅᴇ Bᴏᴛ Tᴏᴋᴇɴ/Usᴇʀɴᴀᴍᴇ ᴀғᴛᴇʀ /rmbot Cᴏᴍᴍᴀɴᴅ**\n\n**Exᴀᴍᴘʟᴇ:** `/rmbot bot_token/username`</blockquote>" #-----
+C_B_H_7 : "<blockquote>⚠️ <b>ᴇʀʀᴏʀ:</b>\n\n<code>{e}</code>\n\n**ᴋɪɴᴅʟʏ ғᴏᴡᴀʀᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ @snowy_hometown ᴛᴏ ɢᴇᴛ ᴀssɪsᴛᴀɴᴄᴇ**</blockquote>"
+C_B_H_8 : "<blockquote><b><i>Pʀᴏᴠɪᴅᴇ Bᴏᴛ Tᴏᴋᴇɴ/Usᴇʀɴᴀᴍᴇ ᴀғᴛᴇʀ /rmbot Cᴏᴍᴍᴀɴᴅ**\n\n**Exᴀᴍᴘʟᴇ:** `/rmbot bot_token/username`</i></b></blockquote>" #-----
 C_B_H_9 : "<blockquote>Cʜᴇᴄᴋɪɴɢ ᴛʜᴇ ʙᴏᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ... Pʟᴇᴀsᴇ ᴡᴀɪᴛ!<blockquote>"
 C_B_H_10 : "<blockquote>**🤖 ʏᴏᴜʀ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ʜᴀs ʙᴇᴇɴ ᴅɪsᴄᴏɴɴᴇᴄᴛᴇᴅ ғʀᴏᴍ ᴍʏ sᴇʀᴠᴇʀ ☠️\nCʟᴏɴᴇ ʙʏ :- /clone**</blockquote>"
-C_B_H_11 : "<blockquote>**⚠️ Nᴏ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ғᴏᴜɴᴅ ᴡɪᴛʜ ᴛʜᴇ ɢɪᴠᴇɴ ᴅᴇᴛᴀɪʟs.**</blockquote>"
-C_B_H_12 : "<blockquote>Bᴏᴛ ᴅᴇʟᴇᴛɪᴏɴ ʀᴇǫᴜᴇsᴛ ʜᴀs ʙᴇᴇɴ sᴇɴᴛ.\n\n__Tʜᴇ ʙᴏᴛ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ᴡɪᴛʜɪɴ ᴀ ᴍɪɴᴜᴛᴇ...__</blockquote>"
-C_B_H_13 : "<blockquote>Nᴏ ʙᴏᴛs ʜᴀᴠᴇ ʙᴇᴇɴ ᴄʟᴏɴᴇᴅ ʏᴇᴛ.</blockquote>"
-C_B_H_14 : "<blockquote>Dᴇʟᴇᴛɪɴɢ ᴀʟʟ ᴄʟᴏɴᴇᴅ ʙᴏᴛs...</blockquote>"
-C_B_H_15 : "<blockquote>Aʟʟ ᴄʟᴏɴᴇᴅ ʙᴏᴛs ʜᴀᴠᴇ ʙᴇᴇɴ ᴅᴇʟᴇᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.</blockquote>"
-C_B_H_16 : "<blockquote>Yᴏᴜ ʜᴀᴠᴇɴ'ᴛ ᴄʟᴏɴᴇᴅ ᴀɴʏ ʙᴏᴛs ʏᴇᴛ.</blockquote>"
+C_B_H_11 : "<blockquote><b><i>⚠️ Nᴏ ᴄʟᴏɴᴇᴅ ʙᴏᴛ ғᴏᴜɴᴅ ᴡɪᴛʜ ᴛʜᴇ ɢɪᴠᴇɴ ᴅᴇᴛᴀɪʟs.💢</i></b></blockquote>"
+C_B_H_12 : "<blockquote><b><i>❇️ʙσᴛ ᴅєʟєᴛɪση ʀєǫᴜєꜱᴛ ʜᴧꜱ ʙєєη ꜱєηᴛ.♻️\n\n🩷ᴛʜє ʙσᴛ ᴡɪʟʟ ʙє ᴅєʟєᴛєᴅ ᴡɪᴛʜɪη ᴧ ϻɪηᴜᴛє...👍</i></b></blockquote>"
+C_B_H_13 : "<blockquote><b><i>Nᴏ ʙᴏᴛs ʜᴀᴠᴇ ʙᴇᴇɴ ᴄʟᴏɴᴇᴅ ʏᴇᴛ.</i></b></blockquote>"
+C_B_H_14 : "<blockquote><b><i>📥ᴅєʟєᴛɪηɢ ᴧʟʟ ᴄʟσηєᴅ ʙσᴛꜱ... 🔍</i></b></blockquote>"
+C_B_H_15 : "<blockquote><b><i>⛩️ᴀʟʟ ᴄʟσηєᴅ ʙσᴛꜱ ʜᴧᴠє ʙєєη ᴅєʟєᴛєᴅ ꜱᴜᴄᴄєꜱꜱғᴜʟʟʏ. 🥀</i></b></blockquote>"
+C_B_H_16 : "<blockquote><b><i>🥀ʏσᴜ ʜᴧᴠєη’ᴛ ᴄʟσηєᴅ ᴧηʏ ʙσᴛꜱ ʏєᴛ. 💤</i></b></blockquote>"
 
-c_start_2 : "<blockquote><b>◈━𓆩🦋 ɪɴғᴏʀᴍᴀᴛɪᴏɴ 𓆪━◈</b>\n\n┏━━━━━━━━━━━━━━━┓\n┃ 🌷 ʜᴇʏ :- <b>{0}</b> 🥀\n┃ 💫 ɪ ᴀᴍ :- <b>{1}</b>\n┗━━━━━━━━━━━━━━━┛\n\n━━━━━━━━━━━━━━━━━━\n\n<b>☁️ ʙᴏᴛ ʜɪɢʜʟɪɢʜᴛꜱ ☁️</b>\n <b>🍭 𝒮ᴜᴘᴘᴏʀᴛᴇᴅ 𝒫ʟᴀᴛғᴏʀᴍꜱ 🍭</b>\n🎵 ʏᴏᴜᴛᴜʙᴇ • sᴘᴏᴛɪғʏ • ʀᴇssᴏ • ᴀᴘᴘʟᴇ • sᴏᴜɴᴅᴄʟᴏᴜᴅ\n🧁 ησ ᴀᴅs & 𝓏єʀσ ᴅσᴡηᴛɪϻє\n🍬 ᴀʟʟ ʏᴏᴜᴛᴜʙᴇ ʟɪηᴋ sᴜᴘᴘσʀᴛ\n🌼 ᴊσɪη <a href=\"https://t.me/snowy_hometown\">ꜱᴜᴘᴘᴏʀᴛ</a> ғᴏʀ ᴍᴏʀᴇ ᴜᴘᴅᴀᴛᴇꜱ\n\n✬━━━━━━━━━━━━━━✬\n\n╔═══════ ≪ •🎵• ≫ ═══════╗\n🎀 ᴘᴏᴡᴇʀᴇᴅ ʙʏ :- <a href=\"https://t.me/Dark_musictm\">˹ ɪɴꜰɪɴɪᴛʏ ✘ ɴᴇᴛᴡᴏʀᴋ˼ 🎧</></a>\n╚═══════ ≪ •🎵• ≫ ═══════╝\n\n<b>🌷 ғᴏʀ ᴍᴏʀᴇ ᴅᴇᴛᴀɪʟꜱ ᴅᴍ :</b> <a href=\"https://t.me/cyber_github\">˹ ɪɴꜰɪɴɪᴛʏ ˼ </a></blockquote>"
+c_start_2 : "<blockquote><b>◈━𓆩🦋 ɪɴғᴏ ━ ꜱᴛᴀʀᴛ 𓆪━◈</b>\n\n┏━━━━━━━━━━━━━━┓\n┃ 🌷 ʜєʏ :- <b>{0}</b> 🥀\n┃ 🎧 ɪ ᴀϻ :- <b>{1}</b>\n┗━━━━━━━━━━━━━━┛\n\n<b>☁️ ᴘʀєϻɪᴜϻ ϻᴜꜱɪᴄ ʙσᴛ ☁️</b>\n🎵 ʏσᴜᴛᴜʙє • ꜱᴘσᴛɪғʏ • ᴀᴘᴘʟє\n🧁 ησ ᴀᴅꜱ • ᴢєʀσ ᴅσᴡηᴛɪϻє\n\n🌼 ᴊσɪη <a href=\"https://t.me/snowy_hometown\">ꜱᴜᴘᴘσʀᴛ</a>\n\n✬━━━━━━━━━━━━✬\n\n🎀 ᴘσᴡєʀєᴅ ʙʏ :- <a href=\"https://t.me/Dark_musictm\">˹ ɪηғɪηɪᴛʏ ✘ ηєᴛᴡσʀᴋ ˼</a>\n🧬 ᴄʟσηєᴅ ʙʏ :- <a href=\"https://t.me/superban_probot\">ꜱᴜᴘєʀʙᴧη ✘ ɴσ ᴧᴅꜱ</a>\n\n<b>🌷 ᴅϻ ғσʀ ʜєʟᴘ :</b> <a href=\"https://t.me/cyber_github\">˹ ɪηғɪηɪᴛʏ ˼</a></blockquote>"
+c_brod_1 : "<blockquote><b><i>✦ ʏσᴜʀ ʙσᴛ ʀєϙᴜɪʀєꜱ ᴀ ᴘʀєϻɪᴜϻ ꜱᴜʙꜱᴄʀɪᴘᴛɪση ᴛσ ᴜꜱє `/ʙʀσᴧᴅᴄᴧꜱᴛ`\n\n🌼 ᴊσɪη <a href=\"https://t.me/dark_musicsupport\">ꜱᴜᴘᴘσʀᴛ</a> σʀ ᴅϻ <a href=\"https://t.me/uchiha_owner\">⚓ ˹ ᴧησηʏϻσᴜꜱ ⇾ ηєσᴄσᴅєʀ ˼</a> ғσʀ ϻσʀє ᴅєᴛᴧɪʟꜱ ᴧηᴅ ɢєᴛ ꜱᴛᴧʀᴛєᴅ 🥀</i></b></blockquote>"
 
-c_brod_1 : "<blockquote expandable> Yᴏᴜʀ ʙᴏᴛ ɴᴇᴇᴅs ᴀ ᴘʀᴇᴍɪᴜᴍ sᴜʙsᴄʀɪᴘᴛɪᴏɴ ᴛᴏ ᴜsᴇ `/broadcast`\n\n Jᴏɪɴ [𝐒ᴜᴘᴘᴏʀᴛ](https://t.me/dark_musicsupport) ᴏʀ DM [˹ ɪɴꜰɪɴɪᴛʏ ˼ ](https://t.me/cyber_github) ғᴏʀ ᴍᴏʀᴇ ᴅᴇᴛᴀɪʟs ᴀɴᴅ ɢᴇᴛ sᴛᴀʀᴛᴇᴅ !</blockquote expandable>"
-
-NOT_C_OWNER : "<blockquote>» Yᴏᴜ Aʀᴇ Nᴏᴛ Aᴜᴛʜᴏʀɪᴢᴇᴅ Tᴏ Usᴇ Tʜɪs Cᴏᴍᴍᴀɴᴅ\n\n Jᴏɪɴ [sɴᴏᴡʏ's ʜᴏᴍᴇᴛᴏᴡɴ](https://t.me/snowy_hometown) ᴏʀ DM [⚓˹ᴧɴσɴʏᴍσᴜs ⇾ ɴᴇᴏᴄᴏᴅᴇʀ - ❕](https://t.me/uchiha_owner) ғᴏʀ ᴍᴏʀᴇ ᴅᴇᴛᴀɪʟs !</blockquote>"
-
+NOT_C_OWNER : "<blockquote><b>» ʏσᴜ ᴀʀє ησᴛ ᴧᴜᴛʜσʀɪᴢєᴅ ᴛσ ᴜꜱє ᴛʜɪꜱ ᴄσϻϻᴧηᴅ\n\n🌼 ᴊσɪη <a href=\"https://t.me/snowy_hometown\">ꜱησᴡʏ'ꜱ ʜσϻєᴛσᴡη</a> σʀ ᴅϻ <a href=\"https://t.me/uchiha_owner\">⚓ ˹ ᴧησηʏϻσᴜꜱ ⇾ ηєσᴄσᴅєʀ ˼</a> ғσʀ ϻσʀє ᴅєᴛᴧɪʟꜱ 🥀</b></blockquote>"
 
 # Premium Msgs
-C_B_P_1 : "Bᴏᴛ ID ɴᴏᴛ ғᴏᴜɴᴅ!"
-C_B_P_2 : "Pʀᴇᴍɪᴜᴍ ɴᴏᴛ ғᴏᴜɴᴅ!"
+C_B_P_1 : "⚡Bᴏᴛ ID ɴᴏᴛ ғᴏᴜɴᴅ!💢"
+C_B_P_2 : "💥Pʀᴇᴍɪᴜᴍ ɴᴏᴛ ғᴏᴜɴᴅ!💤"
 C_B_P_3 : "Test"
 C_B_P_4 : "Test"
 C_B_P_5 : "Test"
 
 # Premium Info
-C_P_I_1 : "<blockquote>Usᴀɢᴇ: `/setsupport <chat_username>`\n\n**Nᴏᴛᴇ:** Dᴏ ɴᴏᴛ ɪɴᴄʟᴜᴅᴇ ᴛʜᴇ `@` sʏᴍʙᴏʟ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ.</blockquote>"
-C_P_I_2 : "<blockquote>Usᴀɢᴇ: /setchannel <channel_username>\n\n**Nᴏᴛᴇ:** Dᴏ ɴᴏᴛ ɪɴᴄʟᴜᴅᴇ ᴛʜᴇ `@` sʏᴍʙᴏʟ ɪɴ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴜsᴇʀɴᴀᴍᴇ.</blockquote>"
-C_P_I_3 : "<blockquote>Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ sᴜᴄᴄᴇssғᴜʟʟʏ sᴇᴛ ᴛᴏ @{0}</blockquote>"
-C_P_I_4 : "<blockquote>Sᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ sᴜᴄᴄᴇssғᴜʟʟʏ sᴇᴛ ᴛᴏ @{0}</blockquote>"
-C_P_I_5 : "<blockquote>Fᴀɪʟᴇᴅ ᴛᴏ ᴜᴘᴅᴀᴛᴇ sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ.</blockquote>"
-C_P_I_6 : "<blockquote>Fᴀɪʟᴇᴅ ᴛᴏ ᴜᴘᴅᴀᴛᴇ sᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ.</blockquote>"
+C_P_I_1 : "<blockquote expandable>🩷Usᴀɢᴇ: `/setsupport <chat_username>`\n\n**💌Nᴏᴛᴇ:** 🔸Dᴏ ɴᴏᴛ ɪɴᴄʟᴜᴅᴇ ᴛʜᴇ `@` sʏᴍʙᴏʟ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ.</blockquote expandable>"
+C_P_I_2 : "<blockquote expandable>🌐Usᴀɢᴇ: /setchannel <channel_username>\n\n**📥Nᴏᴛᴇ:** ❇️Dᴏ ɴᴏᴛ ɪɴᴄʟᴜᴅᴇ ᴛʜᴇ `@` sʏᴍʙᴏʟ ɪɴ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴜsᴇʀɴᴀᴍᴇ.</blockquote>"
+C_P_I_3 : "<blockquote>📥Sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ sᴜᴄᴄᴇssғᴜʟʟʏ sᴇᴛ ᴛᴏ @{0}</blockquote>"
+C_P_I_4 : "<blockquote>😁Sᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ sᴜᴄᴄᴇssғᴜʟʟʏ sᴇᴛ ᴛᴏ @{0}</blockquote>"
+C_P_I_5 : "<blockquote>😭Fᴀɪʟᴇᴅ ᴛᴏ ᴜᴘᴅᴀᴛᴇ sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ.</blockquote>"
+C_P_I_6 : "<blockquote>🥺Fᴀɪʟᴇᴅ ᴛᴏ ᴜᴘᴅᴀᴛᴇ sᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ.</blockquote>"
 
 #clone msg from cloned bot
-NO_CLONE_MSG : "Tᴏ ᴄʀᴇᴀᴛᴇ ʏᴏᴜʀ ᴏᴡɴ ʙᴏᴛ ᴄʟᴏɴᴇ, ᴜsᴇ ᴛʜᴇ ᴏʀɪɢɪɴᴀʟ ʙᴏᴛ @CUTE_ARADHYA56U_BOT. Sɪᴍᴘʟʏ ɢᴏ ᴛʜᴇʀᴇ ᴀɴᴅ sᴛᴀʀᴛ ᴄʟᴏɴɪɴɢ!"
+NO_CLONE_MSG : "<blockquote expandable>⛩️ Tᴏ ᴄʀᴇᴀᴛᴇ ʏᴏᴜʀ ᴏᴡɴ ʙᴏᴛ ᴄʟᴏɴᴇ, ᴜsᴇ ᴛʜᴇ ᴏʀɪɢɪɴᴀʟ ʙᴏᴛ @superban_probot.❤️‍🩹\n\n🔍Sɪᴍᴘʟʏ ɢᴏ ᴛʜᴇʀᴇ ᴀɴᴅ sᴛᴀʀᴛ ᴄʟᴏɴɪɴɢ❇️!"
