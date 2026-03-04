@@ -29,7 +29,7 @@ ASSUSERNAME = os.getenv("ASSUSERNAME" , "dark_assist_1")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 MONGO_DB_URI = os.getenv("MONGO_DB_URI", "mongodb+srv://knight4563:knight4563@cluster0.a5br0se.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-API_KEY = oa.getenv("API_KEY")
+API_KEY = os.getenv("API_KEY")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 
