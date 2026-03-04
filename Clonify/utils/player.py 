@@ -1,9 +1,0 @@
-# Clonify/utils/music/player.py
-
-async def play_music(userbot, chat_id, query, requested_by):
-    await userbot.send_message(
-        chat_id,
-        f"🎵 **Playing:** `{query}`\n👤 Requested by: `{requested_by}`"
-    )
-
-    # 🔥 yahan apna pytgcalls / ytdlp logic add karna
