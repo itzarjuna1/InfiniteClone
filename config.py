@@ -42,7 +42,7 @@ LOGGER_ID = int(os.getenv("LOGGER_ID", "-1003228624224"))
 CLONE_LOGGER = LOGGER_ID
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
-OWNER_ID = int(oa.getenv("OWNER_ID", 7651303468))
+OWNER_ID = int(os.getenv("OWNER_ID", 7651303468))
 # -----------------------------------------------------------------
 # -----------------------------------------------------------------
 # config.py
@@ -98,7 +98,7 @@ SONG_DOWNLOAD_DURATION_LIMIT = int(os.getenv("SONG_DOWNLOAD_DURATION_LIMIT", "99
 # --------------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------------
-SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "1c21247d714244ddbb09925dac565aed")
+SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID", "1c21247d714244ddbb09925dac565aed")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "709e1a2969664491b58200860623ef19")
 # ----------------------------------------------------------------------------------
 
@@ -156,15 +156,15 @@ STREAMI_PICS = [
 
 ]
 
-START_IMG_URL = getenv(
+START_IMG_URL = os.getenv(
     "START_IMG_URL", "https://files.catbox.moe/5gpd4g.jpg"
 )
 
-HELP_IMG_URL = getenv(
+HELP_IMG_URL = os.getenv(
     "HELP_IMG_URL", "https://files.catbox.moe/5gpd4g.jpg"
 )
 
-PING_IMG_URL = getenv(
+PING_IMG_URL = os.getenv(
     "PING_IMG_URL", "https://files.catbox.moe/5gpd4g.jpg"
 )
 PLAYLIST_IMG_URL = "https://files.catbox.moe/5gpd4g.jpg"
