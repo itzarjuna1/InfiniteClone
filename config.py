@@ -106,7 +106,7 @@ SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET", "709e1a2969664491b582
 
 
 # -----------------------------------------------------------------------------------
-PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT", 25))
+PLAYLIST_FETCH_LIMIT = int(os.getenv("PLAYLIST_FETCH_LIMIT", 10))
 # ------------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------------
