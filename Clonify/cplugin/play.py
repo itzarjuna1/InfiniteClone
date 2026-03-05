@@ -282,7 +282,6 @@ async def play_commnd(
                 except Exception as e:
                     print(e)
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 streamtype = "youtube"
                 img = details["thumb"]
                 cap = _["play_11"].format(
@@ -455,7 +454,6 @@ async def play_commnd(
             details, track_id = await YouTube.track(query)
         except:
 
-            os.system(f"kill -9 {os.getpid()} && bash start")
         streamtype = "youtube"
     if str(playmode) == "Direct":
         if not plist_type:
