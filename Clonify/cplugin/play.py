@@ -234,7 +234,6 @@ async def play_commnd(
                 except Exception as e:
                     print(e)
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 streamtype = "playlist"
                 plist_type = "yt"
                 if "&" in url:
@@ -276,7 +275,6 @@ async def play_commnd(
                 except Exception as e:
                     print(e)  # Handle or log the error appropriately
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
 
             else:
                 try:
@@ -302,7 +300,6 @@ async def play_commnd(
                     details, track_id = await Spotify.track(url)
                 except:
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 streamtype = "youtube"
                 img = details["thumb"]
                 cap = _["play_10"].format(details["title"], details["duration_min"])
@@ -311,7 +308,6 @@ async def play_commnd(
                     details, plist_id = await Spotify.playlist(url)
                 except Exception:
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 streamtype = "playlist"
                 plist_type = "spplay"
                 img = config.SPOTIFY_PLAYLIST_IMG_URL
@@ -321,7 +317,6 @@ async def play_commnd(
                     details, plist_id = await Spotify.album(url)
                 except:
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 streamtype = "playlist"
                 plist_type = "spalbum"
                 img = config.SPOTIFY_ALBUM_IMG_URL
@@ -331,7 +326,6 @@ async def play_commnd(
                     details, plist_id = await Spotify.artist(url)
                 except:
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 streamtype = "playlist"
                 plist_type = "spartist"
                 img = config.SPOTIFY_ARTIST_IMG_URL
@@ -344,7 +338,6 @@ async def play_commnd(
                     details, track_id = await Apple.track(url)
                 except:
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 streamtype = "youtube"
                 img = details["thumb"]
                 cap = _["play_10"].format(details["title"], details["duration_min"])
@@ -354,20 +347,17 @@ async def play_commnd(
                     details, plist_id = await Apple.playlist(url)
                 except:
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 streamtype = "playlist"
                 plist_type = "apple"
                 cap = _["play_12"].format(cuser.mention, message.from_user.mention)
                 img = url
             else:
 
-                os.system(f"kill -9 {os.getpid()} && bash start")
         elif await Resso.valid(url):
             try:
                 details, track_id = await Resso.track(url)
             except:
 
-                os.system(f"kill -9 {os.getpid()} && bash start")
             streamtype = "youtube"
             img = details["thumb"]
             cap = _["play_10"].format(details["title"], details["duration_min"])
@@ -376,7 +366,6 @@ async def play_commnd(
                 details, track_path = await SoundCloud.download(url)
             except:
 
-                os.system(f"kill -9 {os.getpid()} && bash start")
             duration_sec = details["duration_sec"]
             if duration_sec > config.DURATION_LIMIT:
                 return await mystic.edit_text(
@@ -620,7 +609,6 @@ async def play_music(client: Client, CallbackQuery, _):
         details, track_id = await YouTube.track(vidid, True)
     except:
 
-        os.system(f"kill -9 {os.getpid()} && bash start")
     if details["duration_min"]:
         duration_sec = time_to_seconds(details["duration_min"])
         if duration_sec > config.DURATION_LIMIT:
@@ -721,31 +709,26 @@ async def play_playlists_command(client: Client, CallbackQuery, _):
             )
         except:
 
-            os.system(f"kill -9 {os.getpid()} && bash start")
     if ptype == "spplay":
         try:
             result, spotify_id = await Spotify.playlist(videoid)
         except:
 
-            os.system(f"kill -9 {os.getpid()} && bash start")
     if ptype == "spalbum":
         try:
             result, spotify_id = await Spotify.album(videoid)
         except:
 
-            os.system(f"kill -9 {os.getpid()} && bash start")
     if ptype == "spartist":
         try:
             result, spotify_id = await Spotify.artist(videoid)
         except:
 
-            os.system(f"kill -9 {os.getpid()} && bash start")
     if ptype == "apple":
         try:
             result, apple_id = await Apple.playlist(videoid, True)
         except:
 
-            os.system(f"kill -9 {os.getpid()} && bash start")
     try:
         await stream(
             client,
@@ -911,7 +894,6 @@ async def stream(
                     )
                 except:
 
-                    os.system(f"kill -9 {os.getpid()} && bash start")
                 await PRO.join_call(
                     chat_id,
                     original_chat_id,
@@ -978,7 +960,6 @@ async def stream(
             )
         except:
 
-            os.system(f"kill -9 {os.getpid()} && bash start")
         if await is_active_chat(chat_id):
             await put_queue(
                 chat_id,
